@@ -1,6 +1,7 @@
 import React from "react";
 import {Image} from "react-bootstrap";
 import IPokemonImage from "../Types/IPokemonImage";
+import {prepareUrl} from "../Services/Common";
 
 /**
  * Gets the image of the pokemon.
@@ -8,8 +9,7 @@ import IPokemonImage from "../Types/IPokemonImage";
  * @constructor The functional component for PokemonImage.
  */
 const PokemonImage: React.FC<IPokemonImage> = (props) => {
-    const urlParts = props.pokemon.url.split("/");
-    const id = urlParts[urlParts.length - 2];
+    const id = prepareUrl(props.pokemon.url);
     const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     return <Image alt={props.pokemon.name} src={imgUrl} roundedCircle/>
 }

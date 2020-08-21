@@ -21,7 +21,6 @@ const PokemonPage: React.FC = (props) => {
         PokemonListService.get(params.name)
             .then((response: any) => {
                 setPokemon(response.data);
-                console.log(response.data);
             })
             .catch((e: any) => {
                 console.log(e);

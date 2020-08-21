@@ -3,6 +3,7 @@ import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
 import IPokemonImage from "../Types/IPokemonImage";
 import {ListGroup} from "react-bootstrap";
+import {prepareUrl} from "../Services/Common";
 
 /**
  * Item of chain evolution sequence.
@@ -25,19 +26,17 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
 
     useEffect(() => {
         PokemonListService.getSpecies(pokemon.name).then((response: any) => {
-            const urlParts = response.data.evolution_chain.url.split("/")
-            setEvolutionId(urlParts[urlParts.length - 2]);
+            setEvolutionId(prepareUrl(response.data.evolution_chain.url));
         });
     }, []);
+
     useEffect(() => {
         if (typeof evolutionId === 'undefined') return;
         PokemonListService.getEvolutionChain(evolutionId)
             .then((response: any) => {
-                console.log(response.data);
                 if (typeof response.data.chain !== "undefined") {
                     setEvolutionChain(response.data.chain);
                 }
-                console.log('evolution', response.data);
             })
             .catch((e: any) => {
                 console.log(e);
@@ -66,10 +65,10 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
     if (!pokemon) return <h1>No Chain</h1>;
     return (
         <>
-           <ul className="card text-dark text-center">
-               <ListGroup>Evolution Chain</ListGroup>
-               {evolution && evolution.map(pokemon => <ListGroup>{pokemon.name}</ListGroup>)}
-           </ul>
+            <ul className="card text-dark text-center">
+                <ListGroup>Evolution Chain</ListGroup>
+                {evolution && evolution.map(pokemon => <ListGroup>{pokemon.name}</ListGroup>)}
+            </ul>
         </>
     )
 }
