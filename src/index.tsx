@@ -8,9 +8,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <Route path="/" exact>
-                <PokemonList/>
-            </Route>
+            <Route path="/" component={PokemonList} exact />
         </Router>
     </React.StrictMode>,
     document.getElementById('root')
