@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
+import useLocalStorage from "../Hooks/useLocalStorage";
 
 const PokemonList: React.FC = () => {
 
     const [pokemon, setPokemon] = useState<Array<IPokemonData>>([]);
     const [currentIndex, setCurrentIndex] = useState(-1);
+    const [capturedPokemonList, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
 
     useEffect(() => {
         retrievePokemon();
@@ -21,7 +23,16 @@ const PokemonList: React.FC = () => {
             .catch((e: any) => {
                 console.log(e);
             })
-    }
+    };
+
+    const setCapturePokemon = (pokemon: IPokemonData, index: number) => {
+        if (capturedPokemonList.indexOf(pokemon) !== null) {
+
+            console.log(capturedPokemonList.indexOf(pokemon));
+
+            setCapturedPokemonList([...capturedPokemonList, pokemon])
+        }
+    };
 
     return (
         <div className="list-row">
@@ -34,9 +45,29 @@ const PokemonList: React.FC = () => {
                     {pokemon && pokemon.map((onePokemon, index) => {
                         const name = onePokemon.name;
                         return (
-                            <li className={"list-group-item" + (index === currentIndex ? "active" : "")}>
+                            <li className={"list-group-item" + (index === currentIndex ? "active" : "")}
+                                onClick={() => setCapturePokemon(onePokemon, index)}
+                                key={index}
+                            >
                                 <Link to={`/pokemon/${name}`}>{name}</Link>
                                 <button>Captured</button>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+
+            <div className="col-md-6">
+                <h3>Captured Pokemon List</h3>
+                <ul className="list-group">
+                    {capturedPokemonList && capturedPokemonList.map((onePokemon, index) => {
+                        const name = onePokemon.name;
+                        return (
+                            <li className={"list-group-item" + (index === currentIndex ? "active" : "")}
+                                onClick={() => setCapturePokemon(onePokemon, index)}
+                                key={index}
+                            >
+                                {name}
                             </li>
                         )
                     })}
