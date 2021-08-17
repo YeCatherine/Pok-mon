@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
 import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
 
@@ -13,25 +14,32 @@ const PokemonList: React.FC = () => {
 
     const retrievePokemon = () => {
         PokemonListService.getAll()
-            .then((response:any) => {
+            .then((response: any) => {
                 setPokemon(response.data.results);
                 console.log(response.data)
             })
-            .catch((e:any) => {
+            .catch((e: any) => {
                 console.log(e);
             })
     }
 
-    return(
+    return (
         <div className="list-row">
             <div className="col-md-6">
                 <h3>Pokemon List</h3>
                 <ul className="list-group">
-                    {pokemon && pokemon.map((onePokemon,index) =>(
-                        <li className={"list-group-item" + (index ===currentIndex ? "active" : "")}>
-                            {onePokemon.name}
-                        </li>
-                    ))}
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    {pokemon && pokemon.map((onePokemon, index) => {
+                        const name = onePokemon.name;
+                        return (
+                            <li className={"list-group-item" + (index === currentIndex ? "active" : "")}>
+                                <Link to={`/pokemon/${name}`}>{name}</Link>
+                                <button>Captured</button>
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         </div>
