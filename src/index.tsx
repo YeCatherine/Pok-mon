@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import PokemonList from "./Components/PokemonList";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router>
-            <Route path="/" component={PokemonList} exact />
-        </Router>
+        <App/>
     </React.StrictMode>,
     document.getElementById('root')
 );
