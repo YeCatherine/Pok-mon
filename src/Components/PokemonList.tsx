@@ -4,6 +4,7 @@ import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
 import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
+import NotCapturedPokemon from "./NotCapturedPokemon";
 
 const PokemonList: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
@@ -54,6 +55,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                     )}
                 </ul>
             </div>
+            <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
             <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
             <hr/>
 
