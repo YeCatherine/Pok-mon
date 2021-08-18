@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import PokemonList from "./Components/PokemonList";
 import PokemonPage from "./Components/PokemonPage";
 import PokemonMovePage from "./Components/PokemonMovePage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     const [capturedPokemonList, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
