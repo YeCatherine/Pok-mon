@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 const getAll = (): any => {
-    return http.get("/pokemon");
+    return http.get("/pokemon?limit=1000");
 }
 const get = (name: string): any => {
     return http.get(`/pokemon/${name}`);

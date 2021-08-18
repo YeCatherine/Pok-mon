@@ -9,10 +9,20 @@ import {Container, Row, Col, ListGroup as Ul, ListGroupItem as Li, Image} from "
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
 
+interface IPokemonSearchBoxComponent {
+    placeholder: string;
+    handleSearch: (e) => void;
+}
+
+const PokemonSearchBox: React.FC<IPokemonSearchBoxComponent> = (props) => {
+    return <input type='search' placeholder={props.placeholder} onChange={props.handleSearch}/>
+}
+
 const PokemonList: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
     const [pokemons, setPokemons] = useState<Array<IPokemonData>>([]);
-    const [sortStatus, setSortStatus] = useState(true);
+    const [searchPokemon, setSearchPokemon] = useState<string>("");
+    const [sortStatus, setSortStatus] = useState<boolean>(true);
 
     useEffect(() => {
         PokemonListService.getAll()
@@ -24,6 +34,21 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
             })
     }, []);
 
+    const handleSeach: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setSearchPokemon(e.target.value.toLowerCase())
+    }
+    /**
+     * Filter pokemon by name in SearchBox.
+     *
+     * @param pokemon
+     */
+    const filterPokemon = pokemon => pokemon.name.toLowerCase().includes(searchPokemon)
+    /**
+     * Sort by Desc and Asc
+     *
+     * @param a
+     * @param b
+     */
     const sortingLogic = (a: IPokemonData, b: IPokemonData) => {
         if (a.name > b.name) {
             return sortStatus ? 1 : -1
@@ -38,6 +63,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
         <div className="list-row">
             <div className="col-md-6">
                 <h3>Pokemon List</h3>
+                <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSeach}/>
                 <Container>
                     <Row className="list-group">
                         <Col>
@@ -49,7 +75,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                             </button>
                         </Col>
 
-                        {pokemons && pokemons.sort(sortingLogic).map((onePokemon, index) =>
+                        {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
                             (<Col key={index}>
                                 <PokemonImage pokemon={onePokemon}/>
                                 <Link to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
