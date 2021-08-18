@@ -6,17 +6,7 @@ import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
 import {Container, Row, Col, ListGroup as Ul, ListGroupItem as Li, Image} from "react-bootstrap";
-
-interface IPokemonComponent {
-    pokemon: IPokemonData
-}
-
-const PokemonImage: React.FC<IPokemonComponent> = (props) => {
-    const urlParts = props.pokemon.url.split("/");
-    const id = urlParts[urlParts.length - 2];
-    const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-    return <Image alt={props.pokemon.name} src={imgUrl} roundedCircle/>
-}
+import PokemonImage from "./PokemonImage";
 
 const PokemonList: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
