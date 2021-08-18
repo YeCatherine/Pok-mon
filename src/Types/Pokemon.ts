@@ -11,6 +11,10 @@ export default interface IPokemonData {
      */
     name: string,
     /**
+     * Url.
+     */
+    url: string
+    /**
      * Weight.
      */
     weight: string,

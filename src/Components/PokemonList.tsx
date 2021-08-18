@@ -5,17 +5,28 @@ import IPokemonData from "../Types/Pokemon";
 import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
-import {ListGroup} from "react-bootstrap";
+import {Container, Row, Col, ListGroup as Ul, ListGroupItem as Li, Image} from "react-bootstrap";
+
+interface IPokemonComponent {
+    pokemon: IPokemonData
+}
+
+const PokemonImage: React.FC<IPokemonComponent> = (props) => {
+    const urlParts = props.pokemon.url.split("/");
+    const id = urlParts[urlParts.length - 2];
+    const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    return <Image alt={props.pokemon.name} src={imgUrl} roundedCircle/>
+}
 
 const PokemonList: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
-    const [pokemon, setPokemon] = useState<Array<IPokemonData>>([]);
+    const [pokemons, setPokemons] = useState<Array<IPokemonData>>([]);
     const [sortStatus, setSortStatus] = useState(true);
 
     useEffect(() => {
         PokemonListService.getAll()
             .then((response: any) => {
-                setPokemon(response.data.results);
+                setPokemons(response.data.results);
             })
             .catch((e: any) => {
                 console.log(e);
@@ -36,23 +47,29 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
         <div className="list-row">
             <div className="col-md-6">
                 <h3>Pokemon List</h3>
-                <ListGroup className="list-group">
-                    <ListGroup.Item>
-                        <Link to="/">Home</Link>
-                    </ListGroup.Item>
-                    <button onClick={() => setSortStatus(!sortStatus)}>
-                        ClickMe to sort {sortStatus ? 'ASK' : 'DESC'}
-                    </button>
-                    {pokemon && pokemon.sort(sortingLogic).map((onePokemon, index) =>
-                        (<ListGroup.Item key={index}>
-                            <Link to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
-                            <button
-                                onClick={() => setCapturePokemon(onePokemon)}>
-                                {checkCapturedPokemon(onePokemon) ? "Escape" : "Capture"}
+                <Container>
+                    <Row className="list-group">
+                        <Col>
+                            <Link to="/">Home</Link>
+                        </Col>
+                        <Col>
+                            <button onClick={() => setSortStatus(!sortStatus)}>
+                                ClickMe to sort {sortStatus ? 'ASK' : 'DESC'}
                             </button>
-                        </ListGroup.Item>)
-                    )}
-                </ListGroup>
+                        </Col>
+
+                        {pokemons && pokemons.sort(sortingLogic).map((onePokemon, index) =>
+                            (<Col key={index}>
+                                <PokemonImage pokemon={onePokemon}/>
+                                <Link to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
+                                <button
+                                    onClick={() => setCapturePokemon(onePokemon)}>
+                                    {checkCapturedPokemon(onePokemon) ? "Escape" : "Capture"}
+                                </button>
+                            </Col>)
+                        )}
+                    </Row>
+                </Container>
             </div>
             <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
             <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
