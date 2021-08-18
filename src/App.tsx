@@ -5,6 +5,7 @@ import IPokemonData from "./Types/Pokemon";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import PokemonList from "./Components/PokemonList";
 import PokemonPage from "./Components/PokemonPage";
+import PokemonMovePage from "./Components/PokemonMovePage";
 
 function App() {
     const [capturedPokemonList, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
@@ -31,6 +32,9 @@ function App() {
                     </Route>
                     <Route path="/pokemon/:name">
                         <PokemonPage/>
+                    </Route>
+                    <Route path="/move/:name">
+                        <PokemonMovePage/>
                     </Route>
                 </Switch>
             </Router>
