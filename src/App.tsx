@@ -29,6 +29,9 @@ function App() {
                     <Route path="/" exact>
                         <PokemonList checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
                     </Route>
+                    <Route path="/pokemon/:name">
+                        <PokemonPage/>
+                    </Route>
                 </Switch>
             </Router>
         </div>
