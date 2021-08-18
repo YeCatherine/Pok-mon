@@ -7,6 +7,7 @@ import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
 import {Container, Row, Col, ListGroup as Ul, ListGroupItem as Li, Image} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
+import CaptureButton from "./CaptureButton";
 
 const PokemonList: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
@@ -52,10 +53,8 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                             (<Col key={index}>
                                 <PokemonImage pokemon={onePokemon}/>
                                 <Link to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
-                                <button
-                                    onClick={() => setCapturePokemon(onePokemon)}>
-                                    {checkCapturedPokemon(onePokemon) ? "Escape" : "Capture"}
-                                </button>
+                                <CaptureButton pokemon={onePokemon} checkCapturedPokemon={checkCapturedPokemon}
+                                               setCapturePokemon={setCapturePokemon}/>
                             </Col>)
                         )}
                     </Row>

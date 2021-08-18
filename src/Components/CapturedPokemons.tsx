@@ -3,20 +3,8 @@ import PokeComponentType from "../Types/PokeComponentType";
 import useLocalStorage from "../Hooks/useLocalStorage";
 import IPokemonData from "../Types/Pokemon";
 import {ListGroup} from "react-bootstrap";
+import CaptureButton from "./CaptureButton";
 
-interface ICaptureButton {
-    pokemon: IPokemonData;
-    checkCapturedPokemon: (pokemon: IPokemonData) => boolean;
-    setCapturePokemon: (pokemon: IPokemonData) => void;
-}
-
-const CaptureButton: React.FC<ICaptureButton> = (props) => {
-    const {pokemon, checkCapturedPokemon, setCapturePokemon} = props;
-    return (<button
-        onClick={() => setCapturePokemon(pokemon)}>
-        {checkCapturedPokemon(pokemon) ? "Escape" : "Capture"}
-    </button>);
-}
 const CapturedPokemons: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
     const [capturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
