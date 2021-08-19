@@ -2,7 +2,6 @@ import React from "react";
 import PokeComponentType from "../Types/PokeComponentType";
 import useLocalStorage from "../Hooks/useLocalStorage";
 import IPokemonData from "../Types/Pokemon";
-import {ListGroup as Lg} from "react-bootstrap";
 import CaptureButton from "./CaptureButton";
 import PokemonImage from "./PokemonImage";
 import {Link} from "react-router-dom";
@@ -19,7 +18,9 @@ const CapturedPokemons: React.FC<PokeComponentType> = (props) => {
         (<div  className="card text-dark text-center card-header" key={index}>
                 <PokemonImage pokemon={currentPokemon}/>
                 <Link className="card-header"
-                      to={`/pokemon/${currentPokemon.name}`}>{currentPokemon.name}</Link>
+                      to={`/pokemon/${currentPokemon.name}`}>
+                    {currentPokemon.name}
+                </Link>
                 <CaptureButton pokemon={currentPokemon} checkCapturedPokemon={checkCapturedPokemon}
                                setCapturePokemon={setCapturePokemon}/>
 
@@ -27,12 +28,12 @@ const CapturedPokemons: React.FC<PokeComponentType> = (props) => {
     );
 
     return (
-            <div >
+            < >
                 <h3>Captured Pokemon List</h3>
-                <div className="list-group d-flex flex-wrap flex-row">
+                <div className="list-group d-flex flex-wrap flex-row justify-content-center">
                     {list}
                 </div>
-            </div>
+            </>
     );
 }
 export default CapturedPokemons;

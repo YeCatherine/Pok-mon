@@ -4,6 +4,7 @@ import IPokemonData from "../Types/Pokemon";
 import PokeComponentType from "../Types/PokeComponentType";
 import useLocalStorage from "../Hooks/useLocalStorage";
 import PokemonImage from "./PokemonImage";
+import {Link} from "react-router-dom";
 
 /**
  * Functional component for random notcaptured pokemon.
@@ -48,14 +49,18 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
     }, [capturedPokemonList, pokemons]);
 
     return (
-        <div>
+        <>
             <h3>Random not Captured Pokemon</h3>
-            {randomPokemon &&
-            <>
-                <PokemonImage pokemon={randomPokemon}/>
-                {randomPokemon.name}
-            </>}
-        </div>
+            <div className="list-group d-flex flex-wrap flex-row justify-content-center">
+                {randomPokemon &&
+                <div className="card text-dark text-center">
+                    <PokemonImage pokemon={randomPokemon}/>
+                    <Link to={`/pokemon/${randomPokemon.name}`}>
+                        {randomPokemon.name}
+                    </Link>
+                </div>}
+            </div>
+        </>
     );
 }
 export default NotCapturedPokemon;

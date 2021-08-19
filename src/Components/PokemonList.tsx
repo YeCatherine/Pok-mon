@@ -5,7 +5,7 @@ import IPokemonData from "../Types/Pokemon";
 import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Col} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
 import IPokemonSearchBox from "../Types/IPokemonSearchBox";
@@ -78,9 +78,9 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
     return (
         <div className="row">
             <div>
-                <h3>Pokemon List</h3>
+                <h1>Pokemon List</h1>
                 <Container>
-                    <div>
+                    <>
                         <div className="list-group d-flex flex-wrap flex-row bd-highlight">
                             <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSearch}/>
                             <Col>
@@ -89,7 +89,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                                 </button>
                             </Col>
                         </div>
-                        <div className="list-group d-flex flex-wrap flex-row">
+                        <div className="list-group d-flex flex-wrap flex-row justify-content-center">
                             {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
                                 (<div className="card text-dark text-center" key={index}>
                                     <PokemonImage pokemon={onePokemon}/>
@@ -101,15 +101,13 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                                 </div>)
                             )}
                         </div>
-                    </div>
+                    </>
                     <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon}
                                       setCapturePokemon={setCapturePokemon}/>
                     <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon}
                                         setCapturePokemon={setCapturePokemon}/>
-
                 </Container>
             </div>
-
             <hr/>
         </div>
     )

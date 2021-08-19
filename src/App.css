@@ -8,9 +8,10 @@
     width: 10rem !important;
 }
 
-.card:hover{
+.card:hover {
     box-shadow: 3px 5px lightgray !important;
 }
+
 input.p-2.flex-grow-1 {
     margin: 20px;
 }

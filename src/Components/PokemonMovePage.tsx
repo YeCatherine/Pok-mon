@@ -2,9 +2,8 @@ import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import IPokemonData from "../Types/Pokemon";
 import PokemonListService from "../Services/PokemonListService";
-import {Container, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
-import CaptureButton from "./CaptureButton";
 
 /**
  * Functional component for pokemon move page.
@@ -38,7 +37,7 @@ const PokemonMovePage: React.FC = (props) => {
     const Move = (props) => {
         console.log(props);
         return <>
-            <h1>Related Pokemon</h1>
+            <h3>Related Pokemon</h3>
             <Container>
                 <div className="list-group d-flex flex-wrap flex-row">
                     {props?.move?.learned_by_pokemon && props?.move?.learned_by_pokemon.map((onePokemon, index) =>
@@ -57,8 +56,7 @@ const PokemonMovePage: React.FC = (props) => {
     return (
         <div>
             <div>
-                <h2>Move name "{params.name}"</h2>
-                <Link to="/">Back to main</Link>
+                <h1>{`${params.name} move`}</h1>
                 <Move move={move}/>
             </div>
         </div>

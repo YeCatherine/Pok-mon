@@ -32,55 +32,54 @@ const PokemonPage: React.FC = (props) => {
     const Pokemon = (props) => {
         return <>
             <Container>
-                <Row>
-                    <Col xs={6} md={4}>
-                        <Image src={props?.pokemon?.sprites?.front_default}
-                               alt={props?.pokemon?.name}
-                               roundedCircle/>
-                    </Col>
-                    <Col xs={6} md={4}>
-                        <Ul>
-                            <Li><span>weight:</span><span>{props?.pokemon?.weight}</span></Li>
-                            <Li><span>height:</span><span>{props?.pokemon?.height}</span></Li>
-                            <Li><span>order:</span><span>{props?.pokemon?.order}</span></Li>
-                        </Ul>
-                        <Ul>
-                            <Li><span><strong>Types:</strong></span>
-                                <ul>
-                                    {props?.pokemon?.types.map(type => (
-                                        <Li key={type.type.name}>{type.type.name}</Li>))}
-                                </ul>
-                            </Li>
-                        </Ul>
-                        <Ul>
-                            <Li><span><strong>Abilities:</strong></span>
-                                <ul>
-                                    {props?.pokemon?.abilities.map(ability => (
-                                        <Li key={ability.ability.name}>{ability.ability.name}</Li>))}
-                                </ul>
-                            </Li>
-                        </Ul>
-                        <Ul>
-                            <Li><span><strong>Moves:</strong></span>
-                                <ul>
-                                    {props?.pokemon?.moves.map(move => (
-                                        <Li key={move.move.name}>
-                                            <Link to={`/move/${move.move.name}`}>{move.move.name}</Link>
-                                        </Li>))}
-                                </ul>
-                            </Li>
-                        </Ul>
-                    </Col>
-                </Row>
+                <div className="list-group d-flex flex-wrap flex-row justify-content-around">
+                    <Ul>
+                        <Li>{`My name is ${props?.pokemon?.name}`}
+                            <ul>
+                                <Image src={props?.pokemon?.sprites?.front_default}
+                                       alt={props?.pokemon?.name}
+                                       roundedCircle/>
+                            </ul>
+                        </Li>
+                    </Ul>
+                    <Ul>
+                        <Li>My Types
+                            <ul>
+                                <Li>{`weight ${props?.pokemon?.weight}`}</Li>
+                                <Li>{`height ${props?.pokemon?.height}`}</Li>
+                                <Li>{`order ${props?.pokemon?.order}`}</Li>
+                                {props?.pokemon?.types.map(type => (
+                                    <Li key={type.type.name}>{type.type.name}</Li>))}
+                            </ul>
+                        </Li>
+                    </Ul>
+                    <Ul>
+                        <Li>My Abilities
+                            <ul>
+                                {props?.pokemon?.abilities.map(ability => (
+                                    <Li key={ability.ability.name}>{ability.ability.name}</Li>))}
+                            </ul>
+                        </Li>
+                    </Ul>
+                    <Ul>
+                        <Li>My Moves
+                            <ul>
+                                {props?.pokemon?.moves.map(move => (
+                                    <Li key={move.move.name}>
+                                        <Link to={`/move/${move.move.name}`}>{move.move.name}</Link>
+                                    </Li>))}
+                            </ul>
+                        </Li>
+                    </Ul>
+                </div>
             </Container>
         </>
     };
 
-    return (<>
-        <h1>Hello "{params.name}"</h1>
-        <Link to="/">Back to main</Link>
-        <Pokemon key={pokemon?.name} pokemon={pokemon}/>
-    </>);
+    return (
+        <>
+            <Pokemon key={pokemon?.name} pokemon={pokemon}/>
+        </>);
 };
 
 export default PokemonPage;
