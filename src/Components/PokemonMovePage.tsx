@@ -4,10 +4,18 @@ import IPokemonData from "../Types/Pokemon";
 import PokemonListService from "../Services/PokemonListService";
 import {Container, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
 
+/**
+ * Functional component for pokemon move page.
+ * @param props Pokemon move name.
+ * @constructor The functional component for pokemon move page.
+ */
 const PokemonMovePage: React.FC = (props) => {
     const params = useParams<any>();
     const [move, setMove] = useState<IPokemonData>();
 
+    /**
+     * Gets all pokemon moves.
+     */
     useEffect(() => {
         PokemonListService.getMove(params.name)
             .then((response: any) => {
@@ -18,8 +26,13 @@ const PokemonMovePage: React.FC = (props) => {
                 console.log(e);
             });
         console.log(move)
-    }, []);
+    }, [move,params.name]);
 
+    /**
+     * Retrieves the list of pokemon moves.
+     * @param props The pokemon.
+     * @constructor Functional component of pokemon moves.
+     */
     const Move = (props) => {
         console.log(props);
         return <>
