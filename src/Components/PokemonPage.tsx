@@ -3,6 +3,8 @@ import {Link, useParams} from "react-router-dom";
 import IPokemonData from "../Types/Pokemon";
 import PokemonListService from "../Services/PokemonListService";
 import {Container, Image, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
+import EvolutionChain from "./EvolutionChain";
+import IPokemonImage from "../Types/IPokemonImage";
 
 /**
  * Outputs the list of pokemon weight, height, order, type name, abilities, moves.
@@ -29,7 +31,7 @@ const PokemonPage: React.FC = (props) => {
      * @param props The pokemon.
      * @constructor Pokemon properties.
      */
-    const Pokemon = (props) => {
+    const Pokemon= (props) => {
         return <>
             <Container>
                 <div className="list-group d-flex flex-wrap flex-row justify-content-around">
@@ -43,6 +45,7 @@ const PokemonPage: React.FC = (props) => {
                             </ul>
                         </Li>
                     </Ul>
+                    <Ul><Li><EvolutionChain pokemon={props?.pokemon}/></Li></Ul>
                     <Ul>
                         <Li>Base Stats
                             <ul>
@@ -93,8 +96,9 @@ const PokemonPage: React.FC = (props) => {
 
     return (
         <>
-            <Pokemon key={pokemon?.name} pokemon={pokemon}/>
+            {pokemon && <Pokemon key={pokemon?.name} pokemon={pokemon}/>}
         </>);
-};
+}
+
 
 export default PokemonPage;

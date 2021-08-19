@@ -21,8 +21,12 @@ const getEvolutionChain = (id: number): any => {
  * @param name The name of pokemon.
  */
 const get = (name: string): any => {
-    return http.get(`/pokemon/${name}?limit=30`);
+    return http.get(`/pokemon/${name}`);
 }
+const getSpecies = (name: string): any => {
+    return http.get(`/pokemon-species/${name}`);
+}
+
 
 /**
  * Retrieves the Get request from `/move/${name}`.
@@ -38,6 +42,7 @@ const getMove = (name: string): any => {
 const PokemonListService = {
     getAll,
     get,
+    getSpecies,
     getMove,
     getEvolutionChain
 }
