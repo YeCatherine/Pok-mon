@@ -3,6 +3,7 @@ import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
 import PokeComponentType from "../Types/PokeComponentType";
 import useLocalStorage from "../Hooks/useLocalStorage";
+import PokemonImage from "./PokemonImage";
 
 /**
  * Functional component for random notcaptured pokemon.
@@ -47,12 +48,10 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
     }, [capturedPokemonList, pokemons]);
 
     return (
-        <>
-            <div className="col-md-6">
+            <div >
                 <h3>Random not Captured Pokemon</h3>
                 {randomPokemon && randomPokemon.name}
             </div>
-        </>
     );
 }
 export default NotCapturedPokemon;

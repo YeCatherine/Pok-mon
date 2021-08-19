@@ -72,34 +72,36 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
     }
 
     return (
-        <div className="list-row">
-            <div className="col-md-6">
+        <div className="row">
+            <div >
                 <h3>Pokemon List</h3>
                 <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSearch}/>
                 <Container>
-                    <Row className="list-group">
-                        <Col>
-                            <Link to="/">Home</Link>
-                        </Col>
+                    <div>
                         <Col>
                             <button onClick={() => setSortStatus(!sortStatus)}>
-                                ClickMe to sort {sortStatus ? 'ASK' : 'DESC'}
+                                ClickMe to sort {sortStatus ? 'ASC' : 'DESC'}
                             </button>
                         </Col>
-                        {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
-                            (<Col key={index}>
+                        <div className="list-group flex-row">
+                            {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
+                            (<div className="card text-dark text-center" key={index}>
                                 <PokemonImage pokemon={onePokemon}/>
-                                <Link to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
+                                <Link className="card-header"
+                                      to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
                                 <CaptureButton pokemon={onePokemon} checkCapturedPokemon={checkCapturedPokemon}
                                                setCapturePokemon={setCapturePokemon}/>
-                            </Col>)
+                            </div>)
                         )}
-                    </Row>
+                        </div>
+                    </div>
+                    <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
+                    <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
+
                 </Container>
             </div>
-            <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
-            <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
-            <hr/>
+
+                <hr/>
         </div>
     )
 }

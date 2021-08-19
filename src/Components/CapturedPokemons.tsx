@@ -4,6 +4,8 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 import IPokemonData from "../Types/Pokemon";
 import {ListGroup as Lg} from "react-bootstrap";
 import CaptureButton from "./CaptureButton";
+import PokemonImage from "./PokemonImage";
+import {Link} from "react-router-dom";
 
 /**
  * Functional component for list of captured pokemon.
@@ -14,22 +16,23 @@ const CapturedPokemons: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
     const [capturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
     const list = capturedPokemonList.map((currentPokemon, index) =>
-        (<Lg.Item key={index}>
-            {currentPokemon.name}
-            <CaptureButton pokemon={currentPokemon} checkCapturedPokemon={checkCapturedPokemon}
-                           setCapturePokemon={setCapturePokemon}/>
-        </Lg.Item>)
+        (<div  className="card text-dark text-center card-header" key={index}>
+                <PokemonImage pokemon={currentPokemon}/>
+                <Link className="card-header"
+                      to={`/pokemon/${currentPokemon.name}`}>{currentPokemon.name}</Link>
+                <CaptureButton pokemon={currentPokemon} checkCapturedPokemon={checkCapturedPokemon}
+                               setCapturePokemon={setCapturePokemon}/>
+
+        </div>)
     );
 
     return (
-        <>
-            <div className="col-md-6">
+            <div >
                 <h3>Captured Pokemon List</h3>
-                <Lg className="list-group">
+                <div className="list-group flex-row">
                     {list}
-                </Lg>
+                </div>
             </div>
-        </>
     );
 }
 export default CapturedPokemons;

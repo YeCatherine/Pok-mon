@@ -7,15 +7,28 @@ import PokemonList from "./Components/PokemonList";
 import PokemonPage from "./Components/PokemonPage";
 import PokemonMovePage from "./Components/PokemonMovePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Top from "./Components/Layout/Top";
 
+/**
+ * The App functional component.
+ * @constructor
+ */
 function App() {
     const [capturedPokemonList, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
 
+    /**
+     * Checks if the pokemon is captured.
+     * @param pokemon The pokemon.
+     */
     const checkCapturedPokemon = (pokemon: IPokemonData) => {
         const finding = capturedPokemonList.find(currentPokemon => currentPokemon.name === pokemon.name);
         return typeof finding === 'object';
     }
 
+    /**
+     * Sets the pokemon to captured list if the pokemon is captured.
+     * @param pokemon The pokemon.
+     */
     const setCapturePokemon = (pokemon: IPokemonData) => {
         if (checkCapturedPokemon(pokemon)) {
             setCapturedPokemonList(capturedPokemonList.filter(currentPokemon => currentPokemon.name !== pokemon.name));
@@ -26,6 +39,7 @@ function App() {
 
     return (
         <div className="App">
+            <Top />
             <Router>
                 <Switch>
                     <Route path="/" exact>

@@ -26,7 +26,7 @@ const PokemonMovePage: React.FC = (props) => {
                 console.log(e);
             });
         console.log(move)
-    }, [move,params.name]);
+    }, [move, params.name]);
 
     /**
      * Retrieves the list of pokemon moves.
@@ -45,11 +45,15 @@ const PokemonMovePage: React.FC = (props) => {
         </>
     };
 
-    return (<>
-        <h1>Move name "{params.name}"</h1>
-        <Link to="/">Back to main</Link>
-        <Move move={move}/>
-    </>);
+    return (
+        <div className="list-row">
+            <div className="col-md-6">
+                <h2>Move name "{params.name}"</h2>
+                <Link to="/">Back to main</Link>
+                <Move move={move}/>
+            </div>
+        </div>
+    );
 };
 
 export default PokemonMovePage;
