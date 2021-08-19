@@ -8,22 +8,31 @@ import NotCapturedPokemon from "./NotCapturedPokemon";
 import {Container, Row, Col} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
+import IPokemonSearchBox from "../Types/IPokemonSearchBox";
 
-interface IPokemonSearchBoxComponent {
-    placeholder: string;
-    handleSearch: (e) => void;
-}
-
-const PokemonSearchBox: React.FC<IPokemonSearchBoxComponent> = (props) => {
+/**
+ * Searches pokemon.
+ * @param props Pokemon list.
+ * @constructor The functional component of PokemonSearchBox.
+ */
+const PokemonSearchBox: React.FC<IPokemonSearchBox> = (props) => {
     return <input type='search' placeholder={props.placeholder} onChange={props.handleSearch}/>
 }
 
+/**
+ * Generates the list of pokemon.
+ * @param props The list of pokemon.
+ * @constructor The functional component of PokemonList.
+ */
 const PokemonList: React.FC<PokeComponentType> = (props) => {
     const {checkCapturedPokemon, setCapturePokemon} = props;
     const [pokemons, setPokemons] = useState<Array<IPokemonData>>([]);
     const [searchPokemon, setSearchPokemon] = useState<string>("");
     const [sortStatus, setSortStatus] = useState<boolean>(true);
 
+    /**
+     * Retrieves all pokemon.
+     */
     useEffect(() => {
         PokemonListService.getAll()
             .then((response: any) => {
@@ -34,20 +43,23 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
             })
     }, []);
 
+    /**
+     * Handles search on input.
+     * @param e Event.
+     */
     const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSearchPokemon(e.target.value.toLowerCase())
     }
     /**
      * Filter pokemon by name in SearchBox.
      *
-     * @param pokemon
+     * @param pokemon All pokemon.
      */
     const filterPokemon = pokemon => pokemon.name.toLowerCase().includes(searchPokemon)
     /**
-     * Sort by Desc and Asc
-     *
-     * @param a
-     * @param b
+     * Sorts pokemon by Desc and Asc.
+     * @param a Previous item.
+     * @param b Next item.
      */
     const sortingLogic = (a: IPokemonData, b: IPokemonData) => {
         if (a.name > b.name) {
@@ -74,7 +86,6 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                                 ClickMe to sort {sortStatus ? 'ASK' : 'DESC'}
                             </button>
                         </Col>
-
                         {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
                             (<Col key={index}>
                                 <PokemonImage pokemon={onePokemon}/>
