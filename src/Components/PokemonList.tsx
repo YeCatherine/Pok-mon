@@ -5,7 +5,7 @@ import IPokemonData from "../Types/Pokemon";
 import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
-import {Container, Row, Col, ListGroup as Ul, ListGroupItem as Li, Image} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
 
@@ -34,7 +34,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
             })
     }, []);
 
-    const handleSeach: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSearchPokemon(e.target.value.toLowerCase())
     }
     /**
@@ -63,7 +63,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
         <div className="list-row">
             <div className="col-md-6">
                 <h3>Pokemon List</h3>
-                <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSeach}/>
+                <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSearch}/>
                 <Container>
                     <Row className="list-group">
                         <Col>
