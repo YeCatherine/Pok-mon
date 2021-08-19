@@ -8,6 +8,7 @@ import NotCapturedPokemon from "./NotCapturedPokemon";
 import {Container, Row, Col} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
+import EvolutionChain from "./EvolutionChain";
 
 interface IPokemonSearchBoxComponent {
     placeholder: string;
