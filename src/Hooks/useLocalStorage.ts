@@ -2,6 +2,11 @@ import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 
 type SetValue<T> = Dispatch<SetStateAction<T>>
 
+/**
+ * The useLocalStorage declaration.
+ * @param key The key for storage.
+ * @param initialValue The value to be held in storage.
+ */
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     /**
      * Get from local storage, then parse stored json or return initialValue
@@ -45,28 +50,26 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
             console.warn(`Error setting localStorage key “${key}”:`, error)
         }
     }
-
+    /**
+     * Sets the stored value.
+     */
     useEffect(() => {
         setStoredValue(readValue())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    /**
+     * Handles the change of storage.
+     */
     useEffect(() => {
         const handleStorageChange = () => {
             setStoredValue(readValue())
         }
-
-        // this only works for other documents, not the current one
         window.addEventListener('storage', handleStorageChange)
-
-        // this is a custom event, triggered in writeValueToLocalStorage
         window.addEventListener('local-storage', handleStorageChange)
-
         return () => {
             window.removeEventListener('storage', handleStorageChange)
             window.removeEventListener('local-storage', handleStorageChange)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return [storedValue, setValue]
