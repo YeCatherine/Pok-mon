@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import IPokemonData from "../Types/Pokemon";
 import PokemonListService from "../Services/PokemonListService";
-import {Container} from "react-bootstrap";
+import {Container, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
 import PokemonImage from "./PokemonImage";
 
 /**
@@ -27,7 +27,7 @@ const PokemonMovePage: React.FC = (props) => {
                 console.log(e);
             });
         console.log(move)
-    }, [move, params.name]);
+    }, []);
 
     /**
      * Retrieves the list of pokemon moves.
@@ -35,7 +35,6 @@ const PokemonMovePage: React.FC = (props) => {
      * @constructor Functional component of pokemon moves.
      */
     const Move = (props) => {
-        console.log(props);
         return <>
             <h3>Related Pokemon</h3>
             <Container>
@@ -53,10 +52,29 @@ const PokemonMovePage: React.FC = (props) => {
         </>
     };
 
+    const MoveDetailes = (props) => {
+        const {move} = props;
+        if (!move) return null;
+        const traverseObject = ["contest_type", "damage_class", "generation", "target", "type"];
+        console.log(move.effect_entries[0].effect);
+        return (
+            <>
+                <p className="card-header">{move.effect_entries && move.effect_entries[0].effect}</p>
+                <div className="list-group d-flex flex-wrap flex-row justify-content-center">
+                    <Ul className="card-header text-dark text-center">
+                        <Li><strong>Power-{move.power}</strong></Li>
+                        {traverseObject.map(item => <Li><strong>{item}</strong> - {move[item].name}</Li>)}
+                    </Ul>
+                </div>
+            </>
+        );
+
+    }
     return (
         <div>
             <div>
-                <h1>{`${params.name} move`}</h1>
+                <h1>{`"${params.name}" move`}</h1>
+                <MoveDetailes move={move}/>
                 <Move move={move}/>
             </div>
         </div>
