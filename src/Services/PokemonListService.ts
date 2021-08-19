@@ -9,6 +9,14 @@ const getAll = (): any => {
 }
 
 /**
+ * Retrieves the Get request from `/evolution-chain/${id}`.
+ * @param name The name of pokemon.
+ */
+const getEvolutionChain = (id: number): any => {
+    return http.get(`/evolution-chain/${id}`)
+}
+
+/**
  * Retrieves the Get request from `/pokemon/${name}`.
  * @param name The name of pokemon.
  */
@@ -30,7 +38,8 @@ const getMove = (name: string): any => {
 const PokemonListService = {
     getAll,
     get,
-    getMove
+    getMove,
+    getEvolutionChain
 }
 
 export default PokemonListService;
