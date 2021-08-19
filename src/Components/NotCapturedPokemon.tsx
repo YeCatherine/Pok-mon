@@ -48,10 +48,14 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
     }, [capturedPokemonList, pokemons]);
 
     return (
-            <div >
-                <h3>Random not Captured Pokemon</h3>
-                {randomPokemon && randomPokemon.name}
-            </div>
+        <div>
+            <h3>Random not Captured Pokemon</h3>
+            {randomPokemon &&
+            <>
+                <PokemonImage pokemon={randomPokemon}/>
+                {randomPokemon.name}
+            </>}
+        </div>
     );
 }
 export default NotCapturedPokemon;
