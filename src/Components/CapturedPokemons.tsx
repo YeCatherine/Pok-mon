@@ -29,7 +29,7 @@ const CapturedPokemons: React.FC<PokeComponentType> = (props) => {
     return (
             <div >
                 <h3>Captured Pokemon List</h3>
-                <div className="list-group flex-row">
+                <div className="list-group d-flex flex-wrap flex-row">
                     {list}
                 </div>
             </div>

@@ -16,7 +16,11 @@ import IPokemonSearchBox from "../Types/IPokemonSearchBox";
  * @constructor The functional component of PokemonSearchBox.
  */
 const PokemonSearchBox: React.FC<IPokemonSearchBox> = (props) => {
-    return <input type='search' placeholder={props.placeholder} onChange={props.handleSearch}/>
+    return <input
+        className="p-2 flex-grow-1"
+        type='search'
+        placeholder={props.placeholder}
+        onChange={props.handleSearch}/>
 }
 
 /**
@@ -73,35 +77,40 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
 
     return (
         <div className="row">
-            <div >
+            <div>
                 <h3>Pokemon List</h3>
-                <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSearch}/>
                 <Container>
                     <div>
-                        <Col>
-                            <button onClick={() => setSortStatus(!sortStatus)}>
-                                ClickMe to sort {sortStatus ? 'ASC' : 'DESC'}
-                            </button>
-                        </Col>
-                        <div className="list-group flex-row">
+                        <div className="list-group d-flex flex-wrap flex-row bd-highlight">
+                            <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSearch}/>
+                            <Col>
+                                <button onClick={() => setSortStatus(!sortStatus)}>
+                                    ClickMe to sort {sortStatus ? 'ASC' : 'DESC'}
+                                </button>
+                            </Col>
+                        </div>
+                        <div className="list-group d-flex flex-wrap flex-row">
                             {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
-                            (<div className="card text-dark text-center" key={index}>
-                                <PokemonImage pokemon={onePokemon}/>
-                                <Link className="card-header"
-                                      to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}</Link>
-                                <CaptureButton pokemon={onePokemon} checkCapturedPokemon={checkCapturedPokemon}
-                                               setCapturePokemon={setCapturePokemon}/>
-                            </div>)
-                        )}
+                                (<div className="card text-dark text-center" key={index}>
+                                    <PokemonImage pokemon={onePokemon}/>
+                                    <Link className="card-header"
+                                          to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}
+                                    </Link>
+                                    <CaptureButton pokemon={onePokemon} checkCapturedPokemon={checkCapturedPokemon}
+                                                   setCapturePokemon={setCapturePokemon}/>
+                                </div>)
+                            )}
                         </div>
                     </div>
-                    <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
-                    <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon} setCapturePokemon={setCapturePokemon}/>
+                    <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon}
+                                      setCapturePokemon={setCapturePokemon}/>
+                    <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon}
+                                        setCapturePokemon={setCapturePokemon}/>
 
                 </Container>
             </div>
 
-                <hr/>
+            <hr/>
         </div>
     )
 }
