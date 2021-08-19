@@ -82,14 +82,14 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                 <Container>
                     <>
                         <div className="list-group d-flex flex-wrap flex-row bd-highlight">
-                            <PokemonSearchBox placeholder="Write Pokemon name" handleSearch={handleSearch}/>
+                            <PokemonSearchBox placeholder="Pokemon name" handleSearch={handleSearch}/>
                             <Col>
                                 <button onClick={() => setSortStatus(!sortStatus)}>
-                                    ClickMe to sort {sortStatus ? 'ASC' : 'DESC'}
+                                    Sort {sortStatus ? 'ASC' : 'DESC'}
                                 </button>
                             </Col>
                         </div>
-                        <div className="list-group d-flex flex-wrap flex-row justify-content-center">
+                        <div className="list-group d-flex flex-wrap flex-row  align-content-between">
                             {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
                                 (<div className="card text-dark text-center" key={index}>
                                     <PokemonImage pokemon={onePokemon}/>

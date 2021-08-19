@@ -5,7 +5,7 @@ import http from "../http-common";
  */
 const getAll = (): any => {
     //@todo change limit after dev.
-    return http.get("/pokemon?limit=10");
+    return http.get("/pokemon?limit=30");
 }
 
 /**
@@ -13,7 +13,7 @@ const getAll = (): any => {
  * @param name The name of pokemon.
  */
 const get = (name: string): any => {
-    return http.get(`/pokemon/${name}`);
+    return http.get(`/pokemon/${name}?limit=30`);
 }
 
 /**
