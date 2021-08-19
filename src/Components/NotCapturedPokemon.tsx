@@ -4,13 +4,20 @@ import IPokemonData from "../Types/Pokemon";
 import PokeComponentType from "../Types/PokeComponentType";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
+/**
+ * Functional component for random notcaptured pokemon.
+ * @param props Captured pokemon.
+ * @constructor of NotCapturedPokemon.
+ */
 const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
     const [pokemons, setPokemons] = useState<Array<IPokemonData>>([]);
     const [capturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
     const [randomPokemon, setRandomPokemon] = useState<IPokemonData>();
 
+    /**
+     * Gets the all pokemon.
+     */
     useEffect(() => {
-        // @todo change to context or Redux.
         PokemonListService.getAll()
             .then((response: any) => {
                 setPokemons(response.data.results);
@@ -20,6 +27,9 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
             })
     }, []);
 
+    /**
+     * Gets the random pokemon.
+     */
     useEffect(() => {
         let captured: Array<IPokemonData> = Array.from(capturedPokemonList);
 
@@ -34,7 +44,7 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
             return x;
         });
         setRandomPokemon(freePokemons[Math.floor(Math.random() * freePokemons.length)]);
-    });
+    }, [capturedPokemonList, pokemons]);
 
     return (
         <>

@@ -1,12 +1,11 @@
-import IPokemonData from "../Types/Pokemon";
 import React from "react";
+import ICaptureButton from "../Types/ICaptureButton";
 
-interface ICaptureButton {
-    pokemon: IPokemonData;
-    checkCapturedPokemon: (pokemon: IPokemonData) => boolean;
-    setCapturePokemon: (pokemon: IPokemonData) => void;
-}
-
+/**
+ * The capture button functional component.
+ * @param props The button status.
+ * @constructor of CaptureButton.
+ */
 const CaptureButton: React.FC<ICaptureButton> = (props) => {
     const {pokemon, checkCapturedPokemon, setCapturePokemon} = props;
     return (<button

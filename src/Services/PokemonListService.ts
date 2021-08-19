@@ -1,7 +1,8 @@
 import http from "../http-common";
 
+//@todo change limit after dev.
 const getAll = (): any => {
-    return http.get("/pokemon?limit=1000");
+    return http.get("/pokemon?limit=10");
 }
 const get = (name: string): any => {
     return http.get(`/pokemon/${name}`);
