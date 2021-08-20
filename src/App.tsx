@@ -44,8 +44,8 @@ function App() {
     return (
         <div className="App">
             <MyGlobalContext.Provider value={{language, setLanguage}}>
-                <Top/>
-                <Router>
+                <Router basename={'/pokedex'}>
+                    <Top/>
                     <Switch>
                         <Route path="/" exact>
                             <PokemonList checkCapturedPokemon={checkCapturedPokemon}
