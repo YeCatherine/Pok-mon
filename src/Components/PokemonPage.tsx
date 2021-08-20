@@ -4,7 +4,7 @@ import IPokemonData from "../Types/Pokemon";
 import PokemonListService from "../Services/PokemonListService";
 import {Container, Image, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
 import EvolutionChain from "./EvolutionChain";
-import IPokemonImage from "../Types/IPokemonImage";
+import {useGlobalContext} from '../Services/Context'
 
 /**
  * Outputs the list of pokemon weight, height, order, type name, abilities, moves.
@@ -14,6 +14,8 @@ import IPokemonImage from "../Types/IPokemonImage";
 const PokemonPage: React.FC = (props) => {
     const params = useParams<any>();
     const [pokemon, setPokemon] = useState<IPokemonData>();
+    const [name, setName] = useState<string>("");
+    const {language} = useGlobalContext()
 
     useEffect(() => {
         PokemonListService.get(params.name)
@@ -26,18 +28,26 @@ const PokemonPage: React.FC = (props) => {
             });
     }, [params.name]);
 
+    PokemonListService.getSpecies(params.name)
+        .then((response: any) => {
+            const translatedName = response.data.names.filter(lang => lang.language.name == language)
+            setName(translatedName[0].name);
+        }).catch((e: any) => {
+        console.log(e);
+    });
+
     /**
      * Outputs the pokemon properties.
      * @param props The pokemon.
      * @constructor Pokemon properties.
      */
-    const Pokemon= (props) => {
+    const Pokemon = (props) => {
         return <>
             <Container>
                 <div className="list-group d-flex flex-wrap flex-row justify-content-around">
                     <Ul>
                         <Li className="pokemon">
-                            {`My name is ${props?.pokemon?.name[0].toUpperCase()}${props?.pokemon?.name.slice(1)}`}
+                            {`My name is "${name}"`}
                             <ul>
                                 <Image src={props?.pokemon?.sprites?.front_default}
                                        alt={props?.pokemon?.name}

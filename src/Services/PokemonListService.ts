@@ -26,8 +26,12 @@ const get = (name: string): any => {
 const getSpecies = (name: string): any => {
     return http.get(`/pokemon-species/${name}`);
 }
-
-
+/**
+ * Get List of available languages.
+ */
+const getLanguages = () => {
+    return http.get('/language');
+}
 /**
  * Retrieves the Get request from `/move/${name}`.
  * @param name The name of pokemon.
@@ -43,6 +47,7 @@ const PokemonListService = {
     getAll,
     get,
     getSpecies,
+    getLanguages,
     getMove,
     getEvolutionChain
 }
