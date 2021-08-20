@@ -79,6 +79,10 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                 <h1>Pokemon List</h1>
                 <Container>
                     <>
+                        <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon}
+                                          setCapturePokemon={setCapturePokemon}/>
+                        <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon}
+                                            setCapturePokemon={setCapturePokemon}/>
                         <div className="list-group d-flex flex-wrap flex-row bd-highlight">
                             <PokemonSearchBox placeholder="Pokemon name" handleSearch={handleSearch}/>
                             <Col>
@@ -95,10 +99,6 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                             )}
                         </div>
                     </>
-                    <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon}
-                                      setCapturePokemon={setCapturePokemon}/>
-                    <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon}
-                                        setCapturePokemon={setCapturePokemon}/>
                 </Container>
             </div>
             <hr/>
