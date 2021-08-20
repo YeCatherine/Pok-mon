@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
 import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
 import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
 import {Container, Col} from "react-bootstrap";
-import PokemonImage from "./PokemonImage";
-import CaptureButton from "./CaptureButton";
 import IPokemonSearchBox from "../Types/IPokemonSearchBox";
+import PokemonCard from "./PokemonCard";
 
 /**
  * Searches pokemon.
@@ -91,14 +89,9 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                         </div>
                         <div className="list-group d-flex flex-wrap flex-row  align-content-between">
                             {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
-                                (<div className="card text-dark text-center" key={index}>
-                                    <PokemonImage pokemon={onePokemon}/>
-                                    <Link className="card-header"
-                                          to={`/pokemon/${onePokemon.name}`}>{onePokemon.name}
-                                    </Link>
-                                    <CaptureButton pokemon={onePokemon} checkCapturedPokemon={checkCapturedPokemon}
-                                                   setCapturePokemon={setCapturePokemon}/>
-                                </div>)
+                                <PokemonCard key={index} pokemon={onePokemon}
+                                             checkCapturedPokemon={checkCapturedPokemon}
+                                             setCapturePokemon={setCapturePokemon}/>
                             )}
                         </div>
                     </>
