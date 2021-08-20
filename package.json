@@ -45,6 +45,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
+    "coverage": "npm run test -- --coverage",
     "eject": "react-scripts eject",
     "docs": "typedoc"
   },
