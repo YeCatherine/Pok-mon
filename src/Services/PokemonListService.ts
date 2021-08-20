@@ -23,6 +23,11 @@ const getEvolutionChain = (id: number): any => {
 const get = (name: string): any => {
     return http.get(`/pokemon/${name}`);
 }
+
+/**
+ * Retrieves the Get request from `/pokemon-species/${name}`.
+ * @param name The name of pokemon.
+ */
 const getSpecies = (name: string): any => {
     return http.get(`/pokemon-species/${name}`);
 }

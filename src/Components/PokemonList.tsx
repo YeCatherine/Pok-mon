@@ -52,12 +52,14 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
     const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSearchPokemon(e.target.value.toLowerCase())
     }
+
     /**
      * Filter pokemon by name in SearchBox.
      *
      * @param pokemon All pokemon.
      */
     const filterPokemon = pokemon => pokemon.name.toLowerCase().includes(searchPokemon)
+
     /**
      * Sorts pokemon by Desc and Asc.
      * @param a Previous item.
