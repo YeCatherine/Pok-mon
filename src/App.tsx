@@ -15,12 +15,13 @@ import {MyGlobalContext} from './Services/Context'
  * @constructor
  */
 function App() {
-
+    const [language, setLanguage] = useState<string>('en');
     const [capturedPokemonList, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
 
     /**
      * Checks if the pokemon is captured.
-     * @param pokemon The pokemon.
+     *
+     * @param {IPokemonData} pokemon The pokemon.
      */
     const checkCapturedPokemon = (pokemon: IPokemonData) => {
         const finding = capturedPokemonList.find(currentPokemon => currentPokemon.name === pokemon.name);
@@ -29,7 +30,8 @@ function App() {
 
     /**
      * Sets the pokemon to captured list if the pokemon is captured.
-     * @param pokemon The pokemon.
+     *
+     * @param {IPokemonData} pokemon The pokemon.
      */
     const setCapturePokemon = (pokemon: IPokemonData) => {
         if (checkCapturedPokemon(pokemon)) {
@@ -39,8 +41,6 @@ function App() {
         }
     }
 
-    const [language, setLanguage] = useState<string>('en')
-
     return (
         <div className="App">
             <MyGlobalContext.Provider value={{language, setLanguage}}>
@@ -48,8 +48,9 @@ function App() {
                     <Top/>
                     <Switch>
                         <Route path="/" exact>
-                            <PokemonList checkCapturedPokemon={checkCapturedPokemon}
-                                         setCapturePokemon={setCapturePokemon}/>
+                            <PokemonList
+                                checkCapturedPokemon={checkCapturedPokemon}
+                                setCapturePokemon={setCapturePokemon}/>
                         </Route>
                         <Route path="/pokemon/:name">
                             <PokemonPage/>
