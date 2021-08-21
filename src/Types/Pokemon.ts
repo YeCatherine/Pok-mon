@@ -34,7 +34,6 @@ export default interface IPokemonData {
      * Abilities
      */
     abilities: Array<string>,
-
     /**
      * Evolution chain
      */

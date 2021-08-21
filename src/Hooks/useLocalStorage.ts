@@ -70,7 +70,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
             window.removeEventListener('storage', handleStorageChange)
             window.removeEventListener('local-storage', handleStorageChange)
         }
-    },[])
+    }, [])
 
     return [storedValue, setValue]
 }

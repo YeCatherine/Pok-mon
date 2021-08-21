@@ -10,7 +10,7 @@ const CaptureButton: React.FC<ICaptureButton> = (props) => {
     const {pokemon, checkCapturedPokemon, setCapturePokemon} = props;
     return (
         <button className="btn btn-outline-secondary"
-            onClick={() => setCapturePokemon(pokemon)}>
+                onClick={() => setCapturePokemon(pokemon)}>
             {checkCapturedPokemon(pokemon) ? "Escape" : "Capture"}
         </button>);
 }

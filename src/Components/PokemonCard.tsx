@@ -22,7 +22,8 @@ const PokemonCard: React.FC<PokeComponentType> = (props) => {
             {pokemon.name}
         </Link>
         {checkCapturedPokemon && setCapturePokemon &&
-        <CaptureButton pokemon={pokemon} checkCapturedPokemon={checkCapturedPokemon}
+        <CaptureButton pokemon={pokemon}
+                       checkCapturedPokemon={checkCapturedPokemon}
                        setCapturePokemon={setCapturePokemon}/>}
     </div>)
 }

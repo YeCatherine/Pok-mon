@@ -5,7 +5,7 @@
  *
  * @return {number} id of content item.
  */
-export const prepareUrl = (url: string): number => {
+export const getIdFromURL = (url: string): number => {
     const urlParts = url.split("/");
     return Number(urlParts[urlParts.length - 2]);
 }

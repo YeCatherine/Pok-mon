@@ -2,7 +2,12 @@ import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import IPokemonData from "../Types/Pokemon";
 import PokemonListService from "../Services/PokemonListService";
-import {Container, Image, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
+import {
+    Container,
+    Image,
+    ListGroup as Ul,
+    ListGroupItem as Li
+} from "react-bootstrap";
 import EvolutionChain from "./EvolutionChain";
 import {useGlobalContext} from '../Services/Context'
 
@@ -43,14 +48,16 @@ const PokemonPage: React.FC = (props) => {
     const Pokemon = (props) => {
         return <>
             <Container>
-                <div className="list-group d-flex flex-wrap flex-row justify-content-around">
+                <div
+                    className="list-group d-flex flex-wrap flex-row justify-content-around">
                     <Ul>
                         <Li className="pokemon">
                             {`My name is "${name}"`}
                             <ul>
-                                <Image src={props?.pokemon?.sprites?.front_default}
-                                       alt={props?.pokemon?.name}
-                                       roundedCircle/>
+                                <Image
+                                    src={props?.pokemon?.sprites?.front_default}
+                                    alt={props?.pokemon?.name}
+                                    roundedCircle/>
                             </ul>
                         </Li>
                     </Ul>
@@ -93,7 +100,8 @@ const PokemonPage: React.FC = (props) => {
                             <ul>
                                 {props?.pokemon?.moves.map(move => (
                                     <Li key={move.move.name}>
-                                        <Link to={`/move/${move.move.name}`}>{move.move.name}</Link>
+                                        <Link
+                                            to={`/move/${move.move.name}`}>{move.move.name}</Link>
                                     </Li>))}
                             </ul>
                         </Li>

@@ -81,19 +81,25 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
                 <h1>Pokemon List</h1>
                 <Container>
                     <>
-                        <CapturedPokemons checkCapturedPokemon={checkCapturedPokemon}
-                                          setCapturePokemon={setCapturePokemon}/>
-                        <NotCapturedPokemon checkCapturedPokemon={checkCapturedPokemon}
-                                            setCapturePokemon={setCapturePokemon}/>
-                        <div className="list-group d-flex flex-wrap flex-row bd-highlight">
-                            <PokemonSearchBox placeholder="Pokemon name" handleSearch={handleSearch}/>
+                        <CapturedPokemons
+                            checkCapturedPokemon={checkCapturedPokemon}
+                            setCapturePokemon={setCapturePokemon}/>
+                        <NotCapturedPokemon
+                            checkCapturedPokemon={checkCapturedPokemon}
+                            setCapturePokemon={setCapturePokemon}/>
+                        <div
+                            className="list-group d-flex flex-wrap flex-row bd-highlight">
+                            <PokemonSearchBox placeholder="Pokemon name"
+                                              handleSearch={handleSearch}/>
                             <Col>
-                                <button onClick={() => setSortStatus(!sortStatus)}>
+                                <button
+                                    onClick={() => setSortStatus(!sortStatus)}>
                                     Sort {sortStatus ? 'ASC' : 'DESC'}
                                 </button>
                             </Col>
                         </div>
-                        <div className="list-group d-flex flex-wrap flex-row  align-content-between">
+                        <div
+                            className="list-group d-flex flex-wrap flex-row  align-content-between">
                             {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
                                 <PokemonCard key={index} pokemon={onePokemon}
                                              checkCapturedPokemon={checkCapturedPokemon}
