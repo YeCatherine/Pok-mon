@@ -4,7 +4,7 @@ import IPokemonData from "../Types/Pokemon";
 import CapturedPokemons from "./CapturedPokemons";
 import PokeComponentType from "../Types/PokeComponentType";
 import NotCapturedPokemon from "./NotCapturedPokemon";
-import {Container, Col} from "react-bootstrap";
+import {Container, Col, Row} from "react-bootstrap";
 import IPokemonSearchBox from "../Types/IPokemonSearchBox";
 import PokemonCard from "./PokemonCard";
 
@@ -75,43 +75,44 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
         }
         return 0;
     }
-
+    if (!pokemons) return <h1>Loading...</h1>
     return (
-        <div className="row">
-            <div>
-                <h1>Pokemon List</h1>
-                <Container>
-                    <>
-                        <CapturedPokemons
-                            checkCapturedPokemon={checkCapturedPokemon}
-                            setCapturePokemon={setCapturePokemon}/>
-                        <NotCapturedPokemon
-                            checkCapturedPokemon={checkCapturedPokemon}
-                            setCapturePokemon={setCapturePokemon}/>
-                        <div
-                            className="list-group d-flex flex-wrap flex-row bd-highlight">
-                            <PokemonSearchBox placeholder="Pokemon name"
-                                              handleSearch={handleSearch}/>
-                            <Col>
-                                <button
-                                    onClick={() => setSortStatus(!sortStatus)}>
-                                    Sort {sortStatus ? 'ASC' : 'DESC'}
-                                </button>
-                            </Col>
-                        </div>
-                        <div
-                            className="list-group d-flex flex-wrap flex-row  align-content-between">
-                            {pokemons && pokemons.filter(filterPokemon).sort(sortingLogic).map((onePokemon, index) =>
-                                <PokemonCard key={index} pokemon={onePokemon}
-                                             checkCapturedPokemon={checkCapturedPokemon}
-                                             setCapturePokemon={setCapturePokemon}/>
-                            )}
-                        </div>
-                    </>
-                </Container>
+        <Container fluid="md">
+            <Row><Col><h1>Pokemon List</h1></Col></Row>
+            <Row>
+                <Col>
+                    <CapturedPokemons
+                        checkCapturedPokemon={checkCapturedPokemon}
+                        setCapturePokemon={setCapturePokemon}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <NotCapturedPokemon
+                        checkCapturedPokemon={checkCapturedPokemon}
+                        setCapturePokemon={setCapturePokemon}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={8}>
+                    <PokemonSearchBox placeholder="Pokemon name"
+                                      handleSearch={handleSearch}/></Col>
+                <Col md={4}>
+                    <button
+                        onClick={() => setSortStatus(!sortStatus)}>
+                        Sort {sortStatus ? 'ASC' : 'DESC'}
+                    </button>
+                </Col>
+            </Row>
+            <div
+                className="list-group d-flex flex-wrap flex-row  align-content-between">
+                {pokemons.filter(filterPokemon).sort(sortingLogic).map((pokemon, index) =>
+                    <PokemonCard key={index} pokemon={pokemon}
+                                 checkCapturedPokemon={checkCapturedPokemon}
+                                 setCapturePokemon={setCapturePokemon}/>
+                )}
             </div>
-            <hr/>
-        </div>
+        </Container>
     )
 }
 

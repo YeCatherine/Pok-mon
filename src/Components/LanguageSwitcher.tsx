@@ -31,7 +31,7 @@ const LanguageSwitcher: React.FC = (props) => {
         <select name="languages" value={currentLanguage}
                 onChange={handleChange}>
             {languageList.map(language => <option
-                value={language}>{language}</option>)}
+                key={language} value={language}>{language}</option>)}
         </select>
     );
 }

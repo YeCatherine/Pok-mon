@@ -60,13 +60,22 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
 
     }, [evolutionChain]);
 
+    /**
+     * Get Evolution sequense.
+     *
+     * @param {Array} evolution - List of related pokemons evolution.
+     */
+    const evolutionList = (evolution:Array<IPokemonData>) => {
+        return evolution.map((pokemon, index) => <PokemonCard
+            key={index}
+            pokemon={pokemon}/>)
+    }
     if (!pokemon || !evolution || evolution.length <= 1) return null;
+
     return (
         <ul className="card text-dark text-center">
             <ListGroup>Evolution Chain</ListGroup>
-            {evolution.map((pokemon, index) => <PokemonCard
-                key={index}
-                pokemon={pokemon}/>)}
+            {evolutionList}
         </ul>
     )
 }

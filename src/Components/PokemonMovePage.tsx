@@ -49,9 +49,8 @@ const PokemonMovePage: React.FC = (props) => {
 
     const MoveDetailes = (props) => {
         const {move} = props;
-        if (!move) return null;
         const traverseObject = ["contest_type", "damage_class", "generation", "target", "type"];
-        console.log(move.effect_entries[0].effect);
+        if (!move) return null;
         return (
             <>
                 <p className="card-header">{move.effect_entries && move.effect_entries[0].effect}</p>
@@ -66,8 +65,8 @@ const PokemonMovePage: React.FC = (props) => {
                 </div>
             </>
         );
-
     }
+
     return (
         <div>
             <div>
