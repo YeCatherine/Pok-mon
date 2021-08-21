@@ -34,7 +34,7 @@ const PokemonPage: React.FC = (props) => {
 
     PokemonListService.getSpecies(params.name)
         .then((response: any) => {
-            const translatedName = response.data.names.filter(lang => lang.language.name == language)
+            const translatedName = response.data.names.filter(lang => lang.language.name === language)
             setName(translatedName[0].name);
         }).catch((e: any) => {
         console.log(e);

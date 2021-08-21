@@ -1,8 +1,8 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
+
 import App from './App';
 
-// Unit test
 describe('Find element by text', () => {
     it('Check for component "Captured Pokemon List"', () => {
         render(<App/>);

@@ -47,6 +47,7 @@ const PokemonList: React.FC<PokeComponentType> = (props) => {
 
     /**
      * Handles search on input.
+     *
      * @param e Event.
      */
     const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {

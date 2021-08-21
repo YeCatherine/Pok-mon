@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState} from "react";
 import PokemonListService from "../Services/PokemonListService";
 import {useGlobalContext} from '../Services/Context'
 
@@ -10,7 +10,7 @@ import {useGlobalContext} from '../Services/Context'
 const LanguageSwitcher: React.FC = (props) => {
     const [currentLanguage, setCurrentLanguage] = useState<string>('en');
     const [languageList, setLanguageList] = useState<Array<string>>([]);
-    const {language, setLanguage} = useGlobalContext()
+    const {setLanguage} = useGlobalContext()
 
     useEffect(() => {
         PokemonListService.getLanguages()

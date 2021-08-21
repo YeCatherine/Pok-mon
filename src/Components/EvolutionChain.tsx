@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import PokemonListService from "../Services/PokemonListService";
 import IPokemonData from "../Types/Pokemon";
 import IPokemonImage from "../Types/IPokemonImage";
 import {ListGroup} from "react-bootstrap";
 import {getIdFromURL} from "../Services/Common";
+import PokemonListService from "../Services/PokemonListService";
+import PokemonCard from "./PokemonCard";
 
 /**
  * Item of chain evolution sequence.
@@ -28,7 +29,7 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
         PokemonListService.getSpecies(pokemon.name).then((response: any) => {
             setEvolutionId(getIdFromURL(response.data.evolution_chain.url));
         });
-    }, []);
+    }, [pokemon]);
 
     useEffect(() => {
         if (typeof evolutionId === 'undefined') return;
@@ -47,12 +48,9 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
         const evolutionList: Array<IPokemonData> = [];
         if (typeof evolutionChain === "undefined") return;
         (function getItem(chainItem: IEvolutionChainItem): any {
-                console.log("chainItem=", chainItem);
                 if (chainItem.species) {
                     evolutionList.push(chainItem.species)
-                    console.log("add", chainItem.species);
                     if (chainItem.evolves_to.length) {
-
                         getItem(chainItem.evolves_to[0]);
                     }
                 }
@@ -60,17 +58,16 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
         )(evolutionChain);
         setEvolution(evolutionList);
 
-    }, [evolutionChain])
+    }, [evolutionChain]);
 
-    if (!pokemon) return <h1>No Chain</h1>;
+    if (!pokemon || !evolution || evolution.length <= 1) return null;
     return (
-        <>
-            <ul className="card text-dark text-center">
-                <ListGroup>Evolution Chain</ListGroup>
-                {evolution && evolution.map(pokemon =>
-                    <ListGroup>{pokemon.name}</ListGroup>)}
-            </ul>
-        </>
+        <ul className="card text-dark text-center">
+            <ListGroup>Evolution Chain</ListGroup>
+            {evolution.map((pokemon, index) => <PokemonCard
+                key={index}
+                pokemon={pokemon}/>)}
+        </ul>
     )
 }
 export default EvolutionChain;
