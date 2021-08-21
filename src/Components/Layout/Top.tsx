@@ -2,7 +2,7 @@ import React from "react";
 import LanguageSwitcher from "../LanguageSwitcher";
 import {Link} from "react-router-dom";
 
-const Top = () => {
+const Top:React.FC = () => {
     return (
         <nav
             className="navbar navbar-expand-md navbar-light bg-opacity-25 bg-dark fixed-top">
