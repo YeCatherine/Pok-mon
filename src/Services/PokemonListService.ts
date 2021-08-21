@@ -10,7 +10,8 @@ const getAll = (): any => {
 
 /**
  * Retrieves the Get request from `/evolution-chain/${id}`.
- * @param name The name of pokemon.
+ *
+ * @param {Number} name The name of pokemon.
  */
 const getEvolutionChain = (id: number): any => {
     return http.get(`/evolution-chain/${id}`)
@@ -18,7 +19,8 @@ const getEvolutionChain = (id: number): any => {
 
 /**
  * Retrieves the Get request from `/pokemon/${name}`.
- * @param name The name of pokemon.
+ *
+ * @param {String} name The name of pokemon.
  */
 const get = (name: string): any => {
     return http.get(`/pokemon/${name}`);
@@ -26,7 +28,8 @@ const get = (name: string): any => {
 
 /**
  * Retrieves the Get request from `/pokemon-species/${name}`.
- * @param name The name of pokemon.
+ *
+ * @param {String} name The name of pokemon.
  */
 const getSpecies = (name: string): any => {
     return http.get(`/pokemon-species/${name}`);
@@ -39,7 +42,8 @@ const getLanguages = () => {
 }
 /**
  * Retrieves the Get request from `/move/${name}`.
- * @param name The name of pokemon.
+ *
+ * @param {String} name The name of pokemon.
  */
 const getMove = (name: string): any => {
     return http.get(`/move/${name}`);

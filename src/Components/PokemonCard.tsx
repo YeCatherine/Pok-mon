@@ -6,7 +6,9 @@ import PokeComponentType from "../Types/PokeComponentType";
 
 /**
  * The pokemon card.
+ *
  * @param props Pokemon.
+ *
  * @constructor the functional component for pokemon card.
  */
 const PokemonCard: React.FC<PokeComponentType> = (props) => {

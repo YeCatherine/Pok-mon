@@ -27,7 +27,6 @@ const LanguageSwitcher: React.FC = (props) => {
         setLanguage(event.target.value)
     }
 
-
     return (
         <select name="languages" value={currentLanguage} onChange={handleChange}>
             {languageList.map(language => <option value={language}>{language}</option>)}

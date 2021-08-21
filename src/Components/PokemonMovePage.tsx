@@ -31,7 +31,9 @@ const PokemonMovePage: React.FC = (props) => {
 
     /**
      * Retrieves the list of pokemon moves.
+     *
      * @param props The pokemon.
+     *
      * @constructor Functional component of pokemon moves.
      */
     const Move = (props) => {
