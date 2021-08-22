@@ -35,7 +35,7 @@ const PokemonImage: React.FC<IPokemonSimpleComponent> = (props) => {
         } else {
             setFallbackPokemonImageURL(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`);
         }
-    }, []);
+    }, [pokemon]);
 
     return <ReactImageFallback
         src={pokemonImageURL}

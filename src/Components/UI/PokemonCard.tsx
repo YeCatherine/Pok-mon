@@ -18,6 +18,7 @@ const PokemonCard: React.FC<IPokemonSimpleComponent> = (props) => {
     return (<div className="pokemon-card card text-dark text-center">
         <Link className="card-header"
               to={`/pokemon/${pokemon.name}`}>
+            {pokemon.id && <span className="pokemon-id">#{pokemon.id}</span>}
             <PokemonImage pokemon={pokemon}/>
             <h2 className="pokemon-name"><span>{pokemon.name}</span></h2>
         </Link>

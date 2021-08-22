@@ -4,6 +4,10 @@ import {ListGroup} from "react-bootstrap";
 import {getIdFromURL} from "../../Services/Common";
 import PokemonListService from "../../Services/PokemonListService";
 import PokemonCard from "./PokemonCard";
+import {
+    ListGroup as Ul,
+    ListGroupItem as Li
+} from "react-bootstrap";
 
 /**
  * Item of chain evolution sequence.
@@ -67,14 +71,18 @@ const EvolutionChain: React.FC<IEvolutionComponent> = (props) => {
      */
     if (evolution.length <= 1) return null;
     return (
-        <ul className="card text-dark text-center">
-            <ListGroup>Evolution Chain</ListGroup>
-            {evolution.map((currentPokemon, index) => {
-                return (<PokemonCard
-                    key={index}
-                    pokemon={currentPokemon}/>);
-            })}
-        </ul>
+        <>
+            <h3>Evolution Chain</h3>
+            <Ul horizontal className="card text-dark text-center">
+                {evolution.map((currentPokemon, index) => {
+                    return (<Li>
+                        <PokemonCard
+                            key={index}
+                            pokemon={currentPokemon}/>
+                    </Li>);
+                })}
+            </Ul>
+        </>
     )
 }
 export default EvolutionChain;
