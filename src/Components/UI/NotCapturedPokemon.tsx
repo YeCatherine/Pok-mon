@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import PokemonListService from "../../Services/PokemonListService";
+import usePokemonCapture from "../../Hooks/usePokemonCapture";
 import IPokemonData from "../../Types/Pokemon";
-import PokeComponentType from "../../Types/PokeComponentType";
-import useLocalStorage from "../../Hooks/useLocalStorage";
 import PokemonCard from "./PokemonCard";
 
 /**
@@ -10,11 +9,10 @@ import PokemonCard from "./PokemonCard";
  * @param props Captured pokemon.
  * @constructor of NotCapturedPokemon.
  */
-const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
+const NotCapturedPokemon: React.FC = (props) => {
     const [pokemons, setPokemons] = useState<Array<IPokemonData>>([]);
-    const [capturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
+    const {capturedPokemons} = usePokemonCapture();
     const [randomPokemon, setRandomPokemon] = useState<IPokemonData>();
-    const {checkCapturedPokemon, setCapturePokemon} = props;
 
     /**
      * Gets the all pokemon.
@@ -33,7 +31,7 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
      * Gets the random pokemon.
      */
     useEffect(() => {
-        let captured: Array<IPokemonData> = Array.from(capturedPokemonList);
+        let captured: Array<IPokemonData> = Array.from(capturedPokemons);
 
         const freePokemons = pokemons.filter(x => {
             for (let capturedIndex in captured) {
@@ -46,17 +44,15 @@ const NotCapturedPokemon: React.FC<PokeComponentType> = (props) => {
             return x;
         });
         setRandomPokemon(freePokemons[Math.floor(Math.random() * freePokemons.length)]);
-    }, [capturedPokemonList, pokemons]);
+    }, [capturedPokemons, pokemons]);
 
+    if (!randomPokemon) return null;
     return (
         <>
             <h3>Random not Captured Pokemon</h3>
             <div
                 className="list-group d-flex flex-wrap flex-row justify-content-center">
-                <PokemonCard pokemon={randomPokemon}
-                             checkCapturedPokemon={checkCapturedPokemon}
-                             setCapturePokemon={setCapturePokemon}/>
-
+                <PokemonCard pokemon={randomPokemon}/>
             </div>
         </>
     );

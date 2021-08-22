@@ -1,21 +1,16 @@
 import React from "react";
-import PokeComponentType from "../../Types/PokeComponentType";
-import useLocalStorage from "../../Hooks/useLocalStorage";
-import IPokemonData from "../../Types/Pokemon";
 import PokemonCard from "./PokemonCard";
+import usePokemonCapture from "../../Hooks/usePokemonCapture";
 
 /**
  * Functional component for list of captured pokemon.
  * @param props Captured pokemon.
  * @constructor of CapturedPokemons.
  */
-const CapturedPokemons: React.FC<PokeComponentType> = (props) => {
-    const {checkCapturedPokemon, setCapturePokemon} = props;
-    const [capturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
-    const list = capturedPokemonList.map((currentPokemon, index) =>
-        <PokemonCard key={index} pokemon={currentPokemon}
-                     checkCapturedPokemon={checkCapturedPokemon}
-                     setCapturePokemon={setCapturePokemon}/>
+const CapturedPokemons: React.FC = (props) => {
+    const {capturedPokemons} = usePokemonCapture();
+    const list = capturedPokemons.map((currentPokemon, index) =>
+        <PokemonCard key={index} pokemon={currentPokemon}/>
     );
 
     return (

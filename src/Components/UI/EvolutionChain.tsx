@@ -65,7 +65,7 @@ const EvolutionChain: React.FC<IPokemonImage> = (props) => {
      *
      * @param {Array} evolution - List of related pokemons evolution.
      */
-    const evolutionList = (evolution:Array<IPokemonData>) => {
+    const evolutionList = (evolution: Array<IPokemonData>) => {
         return evolution.map((pokemon, index) => <PokemonCard
             key={index}
             pokemon={pokemon}/>)
