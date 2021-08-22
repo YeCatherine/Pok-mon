@@ -11,21 +11,19 @@ interface CapturedPokemonType {
  * The usePokemonCapture declaration.
  */
 export default function usePokemonCapture(): CapturedPokemonType {
-    const [capturedPokemons, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
+    const [capturedPokemons, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>("capturedPokemonList", []);
 
     /**
      * Checks if the pokemon is captured.
-     *
      * @param {IPokemonData} pokemon The pokemon.
      */
     const checkCapturedPokemon = (pokemon: IPokemonData): boolean => {
         const finding = capturedPokemons.find(currentPokemon => currentPokemon.name === pokemon.name);
-        return typeof finding === 'object';
+        return typeof finding === "object";
     }
 
     /**
      * Sets the pokemon to captured list if the pokemon is captured.
-     *
      * @param {IPokemonData} pokemon The pokemon.
      */
     const setCapturedPokemons = (pokemon: IPokemonData): void => {
@@ -38,4 +36,3 @@ export default function usePokemonCapture(): CapturedPokemonType {
 
     return {capturedPokemons, setCapturedPokemons, checkCapturedPokemon};
 }
-

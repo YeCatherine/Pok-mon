@@ -12,7 +12,7 @@ export type GlobalContent = {
  * The application Language.
  */
 export const MyGlobalContext = createContext<GlobalContent>({
-    language: 'en',
+    language: "en",
     setLanguage: () => {
     },
 })

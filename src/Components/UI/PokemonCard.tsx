@@ -18,7 +18,7 @@ const PokemonCard: React.FC<IPokemonSimpleComponent> = (props) => {
     if (!pokemon) return <Spinner/>;
 
     return (
-        <Card style={{width: '18rem'}}
+        <Card style={{width: "18rem"}}
               className="pokemon-card card text-dark text-center">
             <Card.Body>
                 <Card.Title className="pokemon-name">

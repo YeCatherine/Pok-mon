@@ -29,9 +29,7 @@ const PokemonMovePage: React.FC = (props) => {
 
     /**
      * Retrieves the list of pokemon moves.
-     *
      * @param props The pokemon.
-     *
      * @constructor Functional component of pokemon moves.
      */
     const Move = (props) => {
@@ -47,6 +45,11 @@ const PokemonMovePage: React.FC = (props) => {
         </>
     };
 
+    /**
+     * Returns the move details.
+     * @param props The move.
+     * @constructor
+     */
     const MoveDetailes = (props) => {
         const {move} = props;
         const traverseObject = ["contest_type", "damage_class", "generation", "target", "type"];

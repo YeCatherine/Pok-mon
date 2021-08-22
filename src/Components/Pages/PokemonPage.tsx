@@ -46,7 +46,7 @@ const PokemonPage: React.FC = (props) => {
     }, [language, params.name]);
 
 
-    if (typeof pokemon === 'undefined' || typeof pokemonSpecies === 'undefined') return (
+    if (typeof pokemon === "undefined" || typeof pokemonSpecies === "undefined") return (
         <h1><Spinner/>Loading...</h1>);
 
     return (
@@ -88,7 +88,7 @@ const PokemonPage: React.FC = (props) => {
                 <Row>
                     <Col>
                         <EvolutionChain pokemon={pokemon}
-                                          pokemonSpecies={pokemonSpecies}/>
+                                        pokemonSpecies={pokemonSpecies}/>
                     </Col>
                 </Row>
                 <Row>
@@ -110,6 +110,5 @@ const PokemonPage: React.FC = (props) => {
             </Container>
         </>);
 };
-
 
 export default PokemonPage;

@@ -4,14 +4,13 @@ import http from "../http-common";
  * Retrieves the Get request from "/pokemon?limit= ".
  */
 const getAll = (): any => {
-    //@todo change limit
-    return http.get("/pokemon-species?limit=1000");
+    return http.get("/pokemon-species?limit=1200");
 }
 
 /**
  * Retrieves the Get request from `/evolution-chain/${id}`.
  *
- * @param {Number} name The name of pokemon.
+ * @param {Number} id The name of pokemon.
  */
 const getEvolutionChain = (id: number): any => {
     return http.get(`/evolution-chain/${id}`)
@@ -38,7 +37,7 @@ const getSpecies = (name: string): any => {
  * Get List of available languages.
  */
 const getLanguages = () => {
-    return http.get('/language');
+    return http.get("/language");
 }
 /**
  * Retrieves the Get request from `/move/${name}`.

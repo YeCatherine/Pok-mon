@@ -11,7 +11,7 @@ import IPokemonSearchBox from "../../Types/IPokemonSearchBox";
 const PokemonSearchBox: React.FC<IPokemonSearchBox> = (props) => {
     return <input
         className="p-2 flex-grow-1"
-        type='search'
+        type="search"
         placeholder={props.placeholder}
         onChange={props.handleSearch}/>
 };

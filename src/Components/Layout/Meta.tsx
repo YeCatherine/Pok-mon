@@ -1,6 +1,6 @@
 import {Helmet} from "react-helmet";
 
-const Meta = ({ title }) => {
+const Meta = ({title}) => {
     return (
         <Helmet>
             <title>{title}</title>
@@ -8,4 +8,4 @@ const Meta = ({ title }) => {
     )
 }
 
-export default Meta
+export default Meta;

@@ -2,8 +2,8 @@ import React from "react";
 import usePokemonCapture from "../../Hooks/usePokemonCapture";
 import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
 import {Button, Image} from "react-bootstrap";
-import pokeball from '../../assets/pokeboll-closed.png'
-import pokeballOpened from '../../assets/pokeball-opened.png';
+import pokeball from "../../assets/pokeboll-closed.png";
+import pokeballOpened from "../../assets/pokeball-opened.png";
 
 /**
  * The capture button functional component.
@@ -20,7 +20,8 @@ const CaptureButton: React.FC<IPokemonSimpleComponent> = (props) => {
 
             {checkCapturedPokemon(pokemon) ?
                 <><Image alt="Free" src={pokeball}/><span>&nbsp;free</span></> :
-                <><Image alt="Capture" src={pokeballOpened}/><span>&nbsp;capture</span></>
+                <><Image alt="Capture"
+                         src={pokeballOpened}/><span>&nbsp;capture</span></>
             }
         </Button>);
 };

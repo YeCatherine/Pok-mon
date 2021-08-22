@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "./Components/Layout/Layout";
 import {Route, Switch} from "react-router-dom";
 import PokemonList from "./Components/Pages/PokemonList";

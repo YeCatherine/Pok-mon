@@ -4,7 +4,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {MyGlobalContext} from '../../Services/Context'
 import Header from './Header';
 import RightSidebar from "./RightSidebar";
-import Footer from './Footer';
+import Footer from "./Footer";
 
 /**
  * Main Layout component.
@@ -14,18 +14,19 @@ import Footer from './Footer';
  * @constructor
  */
 const Layout: React.FC<{ className: string }> = ({className, children}) => {
-    const [language, setLanguage] = useState<string>('en');
+    const [language, setLanguage] = useState<string>("en");
 
     return (
         <Container className={className}>
             <MyGlobalContext.Provider
                 value={{language, setLanguage}}>
-                <Router basename={'/pokedex'}>
+                <Router basename={"/pokedex"}>
                     <Row>
                         <Header/>
                     </Row>
                     <Row>
-                        <Col md={{span: 10, order: 0}} xs={{span: 12, order: 1}}>
+                        <Col md={{span: 10, order: 0}}
+                             xs={{span: 12, order: 1}}>
                             <main>{children}</main>
                         </Col>
                         <Col md={{span: 2, order: 1}} xs={{span: 12, order: 0}}>

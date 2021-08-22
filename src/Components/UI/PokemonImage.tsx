@@ -18,19 +18,19 @@ const PokemonImage: React.FC<IPokemonSimpleComponent> = (props) => {
 
     useEffect(() => {
         let pokemonId: number | undefined;
-        if (typeof pokemon.id !== 'undefined') {
+        if (typeof pokemon.id !== "undefined") {
             pokemonId = pokemon.id;
         } else {
             pokemonId = getIdFromURL(pokemon.url);
         }
 
-        if (typeof pokemon.sprites?.other?.front_default?.front_default !== 'undefined') {
+        if (typeof pokemon.sprites?.other?.front_default?.front_default !== "undefined") {
             setPokemonImageURL(pokemon.sprites.other.front_default.front_default);
         } else {
             setPokemonImageURL(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`);
         }
 
-        if (typeof pokemon.sprites?.other?.front_default?.front_default !== 'undefined') {
+        if (typeof pokemon.sprites?.other?.front_default?.front_default !== "undefined") {
             setPokemonImageURL(pokemon.sprites.front_default);
         } else {
             setFallbackPokemonImageURL(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`);

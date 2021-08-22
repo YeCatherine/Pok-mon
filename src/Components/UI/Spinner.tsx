@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * The Loader.
+ * @constructor
+ */
 const Spinner: React.FC = () => (
     <div className="post loading">
         <svg

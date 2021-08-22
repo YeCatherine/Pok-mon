@@ -22,8 +22,7 @@ enum SortDirection {
  * @constructor The functional component of PokemonList.
  */
 const PokemonList: React.FC = (props) => {
-
-    const [pokemons, setPokemons] = useLocalStorage<Array<IPokemonData>>('pokemonsList', []);
+    const [pokemons, setPokemons] = useLocalStorage<Array<IPokemonData>>("pokemonsList", []);
     const [searchPokemon, setSearchPokemon] = useState<string>("");
     const [sortStatus, setSortStatus] = useState<string>(SortDirection.SortIDAsc);
 
@@ -48,7 +47,6 @@ const PokemonList: React.FC = (props) => {
 
     /**
      * Handles search on input.
-     *
      * @param e Event.
      */
     const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -57,7 +55,6 @@ const PokemonList: React.FC = (props) => {
 
     /**
      * Filter pokemon by name in SearchBox.
-     *
      * @param pokemon All pokemons.
      */
     const filterPokemon = pokemon => pokemon.name.toLowerCase().includes(searchPokemon)
@@ -66,7 +63,6 @@ const PokemonList: React.FC = (props) => {
      * Sorts pokemon by ID or Name Desc and Asc.
      *
      * @param a Previous item.
-     *
      * @param b Next item.
      */
     const sortingLogic = (a: IPokemonData, b: IPokemonData) => {

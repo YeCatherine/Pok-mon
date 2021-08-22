@@ -3,7 +3,6 @@ import PokemonListService from "../../Services/PokemonListService";
 import usePokemonCapture from "../../Hooks/usePokemonCapture";
 import IPokemonData from "../../Types/IPokemonData";
 import PokemonCard from "./PokemonCard";
-import {Card, Button} from "react-bootstrap";
 import Spinner from "./Spinner";
 
 /**

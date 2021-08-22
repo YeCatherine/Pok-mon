@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import IPokemonData from "../../Types/IPokemonData";
-import {ListGroup} from "react-bootstrap";
 import {getIdFromURL} from "../../Services/Common";
 import PokemonListService from "../../Services/PokemonListService";
 import PokemonCard from "./PokemonCard";
@@ -35,7 +34,7 @@ const EvolutionChain: React.FC<IEvolutionComponent> = (props) => {
         // Get evolution id.
         if (pokemonSpecies.evolution_chain?.url) {
             const evolutionId = getIdFromURL(pokemonSpecies.evolution_chain?.url);
-            if (typeof evolutionId === 'undefined') return undefined;
+            if (typeof evolutionId === "undefined") return undefined;
 
             PokemonListService.getEvolutionChain(evolutionId)
                 .then((response: any) => {
@@ -65,8 +64,7 @@ const EvolutionChain: React.FC<IEvolutionComponent> = (props) => {
     }, [pokemonSpecies]);
 
     /**
-     * Get Evolution sequense.
-     *
+     * Get Evolution sequence.
      * @param {Array} evolution - List of related pokemons evolution.
      */
     if (evolution.length <= 1) return null;
