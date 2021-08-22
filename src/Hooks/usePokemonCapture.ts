@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 import useLocalStorage from "./useLocalStorage";
-import IPokemonData from "../Types/Pokemon";
+import IPokemonData from "../Types/IPokemonData";
 
 interface CapturedPokemonType {
     capturedPokemons: Array<IPokemonData>

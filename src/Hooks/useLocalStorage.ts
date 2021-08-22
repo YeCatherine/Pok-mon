@@ -2,9 +2,11 @@ import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 
 type SetValue<T> = Dispatch<SetStateAction<T>>
 
+
 /**
  * The useLocalStorage declaration.
- * @param key The key for storage.
+ *
+ * @param {String} key The key for storage.
  * @param initialValue The value to be held in storage.
  */
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {

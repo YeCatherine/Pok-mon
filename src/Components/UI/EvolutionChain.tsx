@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import IPokemonData from "../../Types/Pokemon";
-import IPokemonImage from "../../Types/IPokemonImage";
+import IPokemonData from "../../Types/IPokemonData";
 import {ListGroup} from "react-bootstrap";
 import {getIdFromURL} from "../../Services/Common";
 import PokemonListService from "../../Services/PokemonListService";
 import PokemonCard from "./PokemonCard";
+import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
 
 /**
  * Item of chain evolution sequence.
@@ -19,7 +19,7 @@ interface IEvolutionChainItem {
  * @param props The pokemon.
  * @constructor The functional component of EvolutionChain.
  */
-const EvolutionChain: React.FC<IPokemonImage> = (props) => {
+const EvolutionChain: React.FC<IPokemonSimpleComponent> = (props) => {
     const {pokemon} = props
     const [evolutionId, setEvolutionId] = useState<number>();
     const [evolutionChain, setEvolutionChain] = useState<IEvolutionChainItem>();

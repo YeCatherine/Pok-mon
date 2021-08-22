@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
-import PokeComponentType from "../../Types/PokeComponentType";
+import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
 
 /**
  * The pokemon card.
@@ -11,7 +11,7 @@ import PokeComponentType from "../../Types/PokeComponentType";
  *
  * @constructor the functional component for pokemon card.
  */
-const PokemonCard: React.FC<PokeComponentType> = (props) => {
+const PokemonCard: React.FC<IPokemonSimpleComponent> = (props) => {
     const {pokemon} = props;
     if (!pokemon) return null;
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import IPokemonData from "../../Types/Pokemon";
+import IPokemonData from "../../Types/IPokemonData";
 import PokemonListService from "../../Services/PokemonListService";
 import {
     Container,
