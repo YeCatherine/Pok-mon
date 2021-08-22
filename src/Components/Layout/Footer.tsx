@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 
             <Row>
                 <Col>
-                    <a href={"https://gist.github.com/xcambar/c6438e7330584e42f71f2a51b8b367cc"}
+                    <a href={"https://github.com/YeCatherine/pokedex"}
                        className="navbar-brand col-sm-3 col-md-2 mr-0 align-items-center">
                         Pokédex Mission
                     </a>
