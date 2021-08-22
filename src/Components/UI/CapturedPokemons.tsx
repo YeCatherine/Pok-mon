@@ -15,7 +15,7 @@ const CapturedPokemons: React.FC = (props) => {
 
     return (
         <>
-            <h3>Captured</h3>
+            <h4>Captured</h4>
             <div
                 className="list-group d-flex flex-wrap flex-row justify-content-center">{list}</div>
         </>

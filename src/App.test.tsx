@@ -4,15 +4,15 @@ import {render, screen} from '@testing-library/react';
 import App from './App';
 
 describe('Find element by text', () => {
-    it('Check for component "Captured Pokemon List"', () => {
+    it('Check for component "Captured"', () => {
         render(<App/>);
-        const linkElement = screen.getByText(/Captured Pokemon List/i);
+        const linkElement = screen.getByText(/Captured/i);
         expect(linkElement).toBeInTheDocument();
     });
 
-    it('Check for component "Random not Captured Pokemon"', () => {
+    it('Check for component "See also"', () => {
         render(<App/>);
-        const linkElement = screen.getByText(/Random not Captured Pokemon/i);
+        const linkElement = screen.getByText(/See also/i);
         expect(linkElement).toBeInTheDocument();
     });
 });

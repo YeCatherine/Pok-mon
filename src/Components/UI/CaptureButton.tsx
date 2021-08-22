@@ -19,8 +19,8 @@ const CaptureButton: React.FC<IPokemonSimpleComponent> = (props) => {
                 onClick={() => setCapturedPokemons(pokemon)}>
 
             {checkCapturedPokemon(pokemon) ?
-                <Image alt="Free" src={pokeball}/> :
-                <Image alt="Capture" src={pokeballOpened}/>
+                <><Image alt="Free" src={pokeball}/><span>&nbsp;free</span></> :
+                <><Image alt="Capture" src={pokeballOpened}/><span>&nbsp;capture</span></>
             }
         </Button>);
 };

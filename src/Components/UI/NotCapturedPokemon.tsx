@@ -52,7 +52,7 @@ const NotCapturedPokemon: React.FC = (props) => {
 
     return (
         <>
-            <h3>See also</h3>
+            <h4>See also</h4>
             <div
                 className="list-group d-flex flex-wrap flex-row justify-content-center">
                 <PokemonCard pokemon={randomPokemon}/>

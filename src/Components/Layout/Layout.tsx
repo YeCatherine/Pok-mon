@@ -25,10 +25,10 @@ const Layout: React.FC<{ className: string }> = ({className, children}) => {
                         <Header/>
                     </Row>
                     <Row>
-                        <Col md={{span: 9, order: 0}} xs={{span: 12, order: 1}}>
+                        <Col md={{span: 10, order: 0}} xs={{span: 12, order: 1}}>
                             <main>{children}</main>
                         </Col>
-                        <Col md={{span: 3, order: 1}} xs={{span: 12, order: 0}}>
+                        <Col md={{span: 2, order: 1}} xs={{span: 12, order: 0}}>
                             <RightSidebar/>
                         </Col>
                     </Row>

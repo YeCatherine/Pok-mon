@@ -21,15 +21,21 @@ const PokemonCard: React.FC<IPokemonSimpleComponent> = (props) => {
         <Card style={{width: '18rem'}}
               className="pokemon-card card text-dark text-center">
             <Card.Body>
-                <Card.Title className="pokemon-name"><span>{pokemon.name}</span></Card.Title>
+                <Card.Title className="pokemon-name">
+                    <span>
+                        {pokemon.name}
+                        {pokemon.id &&
+                        <><br/><span
+                            className="pokemon-id">(#{pokemon.id})</span></>}
+                    </span>
+                </Card.Title>
                 <Card.Text>
                     <Link className=""
                           to={`/pokemon/${pokemon.name}`}>
-                        {pokemon.id &&
-                        <span className="pokemon-id">#{pokemon.id}</span>}
                         <PokemonImage pokemon={pokemon}/>
                     </Link>
                 </Card.Text>
+
                 <CaptureButton pokemon={pokemon}/>
             </Card.Body>
         </Card>)
