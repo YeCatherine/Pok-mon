@@ -15,11 +15,11 @@ const PokemonCard: React.FC<IPokemonSimpleComponent> = (props) => {
     const {pokemon} = props;
     if (!pokemon) return null;
 
-    return (<div className="card text-dark text-center">
+    return (<div className="pokemon-card card text-dark text-center">
         <Link className="card-header"
               to={`/pokemon/${pokemon.name}`}>
             <PokemonImage pokemon={pokemon}/>
-            {pokemon.name}
+            <h2 className="pokemon-name"><span>{pokemon.name}</span></h2>
         </Link>
         <CaptureButton pokemon={pokemon}/>
     </div>)

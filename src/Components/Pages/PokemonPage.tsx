@@ -10,6 +10,7 @@ import {
 import EvolutionChain from "../UI/EvolutionChain";
 import {useGlobalContext} from '../../Services/Context'
 import PokemonCard from "../UI/PokemonCard";
+import Spinner from "../UI/Spinner";
 
 /**
  * Outputs the list of pokemon weight, height, order, type name, abilities, moves.
@@ -44,7 +45,7 @@ const PokemonPage: React.FC = (props) => {
 
 
     if (typeof pokemon === 'undefined' || typeof pokemonSpecies === 'undefined') return (
-        <h1>Loading...</h1>);
+        <h1><Spinner/>Loading...</h1>);
 
     return (
         <>

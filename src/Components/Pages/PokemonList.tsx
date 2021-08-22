@@ -3,6 +3,7 @@ import PokemonListService from "../../Services/PokemonListService";
 import IPokemonData from "../../Types/IPokemonData";
 import PokemonCard from "../UI/PokemonCard";
 import PokemonSearchBox from "../UI/PokemonSearchBox";
+import Spinner from "../UI/Spinner";
 
 /**
  * Generates the list of pokemon.
@@ -63,7 +64,9 @@ const PokemonList: React.FC = (props) => {
         return 0;
     }
 
-    if (!pokemons) return <h1>Loading...</h1>
+    if (!pokemons || typeof pokemons === "undefined") return (
+        <h1><Spinner/>Loading...</h1>);
+
 
     return (
         <>
