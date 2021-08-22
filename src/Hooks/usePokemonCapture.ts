@@ -1,4 +1,3 @@
-import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 import useLocalStorage from "./useLocalStorage";
 import IPokemonData from "../Types/IPokemonData";
 
@@ -11,7 +10,7 @@ interface CapturedPokemonType {
 /**
  * The usePokemonCapture declaration.
  */
-export default function usePokemonCapture<T>(): CapturedPokemonType {
+export default function usePokemonCapture(): CapturedPokemonType {
     const [capturedPokemons, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
 
     /**

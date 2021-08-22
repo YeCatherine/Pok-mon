@@ -9,5 +9,5 @@ const RightSidebar: React.FC = () => {
             <CapturedPokemons/>
         </>
     )
-}
+};
 export default RightSidebar;

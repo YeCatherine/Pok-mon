@@ -70,4 +70,5 @@ export default interface IPokemonData {
     published?: boolean,
     sprites: Sprites
     stats: Array<StatsList>
+    evolution_chain?: GenericPokemonAbility
 }

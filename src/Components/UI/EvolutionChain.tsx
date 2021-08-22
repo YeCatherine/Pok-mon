@@ -13,11 +13,6 @@ interface IEvolutionChainItem {
     evolves_to: Array<IEvolutionChainItem>;
 }
 
-interface IEvolutionResponse {
-
-    chain: IEvolutionChainItem
-}
-
 interface IEvolutionComponent {
     pokemon: IPokemonData
     pokemonSpecies: IPokemonData
@@ -29,7 +24,7 @@ interface IEvolutionComponent {
  * @constructor The functional component of EvolutionChain.
  */
 const EvolutionChain: React.FC<IEvolutionComponent> = (props) => {
-    const {pokemon, pokemonSpecies} = props;
+    const {pokemonSpecies} = props;
     const [evolution, setEvolution] = useState<Array<IPokemonData>>([]);
 
     useEffect(() => {

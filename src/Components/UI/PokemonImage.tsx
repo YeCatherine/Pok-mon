@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {Image} from "react-bootstrap";
 import {getIdFromURL} from "../../Services/Common";
 import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
 import ReactImageFallback from 'react-image-fallback';
@@ -14,8 +13,8 @@ const PokemonImage: React.FC<IPokemonSimpleComponent> = (props) => {
     /**
      * Pokemon Id.
      */
-    const [pokemonImageURL, setPokemonImageURL] = useState<string>();
-    const [pokemonFallbackImageURL, setFallbackPokemonImageURL] = useState<string>();
+    const [pokemonImageURL, setPokemonImageURL] = useState<string>("");
+    const [pokemonFallbackImageURL, setFallbackPokemonImageURL] = useState<string>("");
 
     useEffect(() => {
         let pokemonId: number | undefined;
