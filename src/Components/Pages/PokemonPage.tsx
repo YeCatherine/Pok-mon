@@ -57,40 +57,49 @@ const PokemonPage: React.FC = (props) => {
                         <h1>{`My name is "${name}"`}</h1>
                         <PokemonCard pokemon={pokemon}/>
                     </Col>
-                    <Col>
-                        <Ul className="pokemon-base-stats">
-
+                    <Col className="card card-header text-dark text-center">
+                        <h3>Base stats</h3>
+                        <Ul className="pokemon-base-stats flex-wrap" horizontal>
                             {pokemon.stats.map(st => (
                                 <Li key={st.stat.name}>{st.stat.name} - {st.base_stat}</Li>))}
-
                         </Ul>
-                        <Ul className="pokemon-abilities">
+                        <hr/>
+                        <h3>Abilities</h3>
+                        <Ul className="pokemon-abilities flex-wrap" horizontal>
                             {pokemon.abilities.map(ability => (
                                 <Li key={ability.ability.name}>{ability.ability.name}</Li>))}
                         </Ul>
-                        <Ul className="pokemon-properties">
-                            <Li>{`weight ${pokemon.weight}`}</Li>
-                            <Li>{`height ${pokemon.height}`}</Li>
-                            <Li>{`order ${pokemon.order}`}</Li>
+                        <hr/>
+                        <h3>Properties</h3>
+                        <Ul className="pokemon-properties flex-wrap" horizontal>
+                            <Li>{`weight - ${pokemon.weight}`}</Li>
+                            <Li>{`height - ${pokemon.height}`}</Li>
+                            <Li>{`order - ${pokemon.order}`}</Li>
                         </Ul>
-                        <Ul className="pokemon-types">
+                        <hr/>
+                        <h3>Types</h3>
+                        <Ul className="pokemon-types flex-wrap" horizontal>
                             {pokemon.types.map(typ => (
                                 <Li key={typ.type.name}>{typ.type.name}</Li>))}
                         </Ul>
+                        <hr/>
                     </Col>
                 </Row>
-                <Row><Col><EvolutionChain pokemon={pokemon}
-                                          pokemonSpecies={pokemonSpecies}/></Col></Row>
+                <Row>
+                    <Col>
+                        <EvolutionChain pokemon={pokemon}
+                                          pokemonSpecies={pokemonSpecies}/>
+                    </Col>
+                </Row>
                 <Row>
                     <Col>
                         <h3>Moves</h3>
                         <Ul className="pokemon-moves flex-wrap" horizontal>
-                            {console.log("moved", pokemon.moves)}
                             {pokemon.moves.map(move => (
                                 <Li key={move.move.name}>
                                     <Link
                                         to={`/move/${move.move.name}`}>
-                                        <h4>{move.move.name}</h4>
+                                        <h5>{move.move.name}</h5>
                                     </Link>
                                 </Li>))}
                         </Ul>

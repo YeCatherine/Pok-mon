@@ -62,7 +62,7 @@ const EvolutionChain: React.FC<IEvolutionComponent> = (props) => {
                     console.log(e);
                 });
         }
-    }, []);
+    }, [pokemonSpecies]);
 
     /**
      * Get Evolution sequense.
