@@ -1,68 +1,33 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import useLocalStorage from "./Hooks/useLocalStorage";
-import IPokemonData from "./Types/Pokemon";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Layout from "./Components/Layout/Layout";
+import {Route, Switch} from "react-router-dom";
 import PokemonList from "./Components/Pages/PokemonList";
 import PokemonPage from "./Components/Pages/PokemonPage";
 import PokemonMovePage from "./Components/Pages/PokemonMovePage";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Top from "./Components/Layout/Top";
-import {MyGlobalContext} from './Services/Context'
 import Page404 from "./Components/Pages/Page404";
+
 /**
  * The App functional component.
  * @constructor
  */
 function App() {
-    const [language, setLanguage] = useState<string>('en');
-    const [capturedPokemonList, setCapturedPokemonList] = useLocalStorage<Array<IPokemonData>>('capturedPokemonList', []);
-
-    /**
-     * Checks if the pokemon is captured.
-     *
-     * @param {IPokemonData} pokemon The pokemon.
-     */
-    const checkCapturedPokemon = (pokemon: IPokemonData) => {
-        const finding = capturedPokemonList.find(currentPokemon => currentPokemon.name === pokemon.name);
-        return typeof finding === 'object';
-    }
-
-    /**
-     * Sets the pokemon to captured list if the pokemon is captured.
-     *
-     * @param {IPokemonData} pokemon The pokemon.
-     */
-    const setCapturePokemon = (pokemon: IPokemonData) => {
-        if (checkCapturedPokemon(pokemon)) {
-            setCapturedPokemonList(capturedPokemonList.filter(currentPokemon => currentPokemon.name !== pokemon.name));
-        } else {
-            setCapturedPokemonList([...capturedPokemonList, pokemon])
-        }
-    }
-
     return (
-        <div className="App">
-            <MyGlobalContext.Provider value={{language, setLanguage}}>
-                <Router basename={'/pokedex'}>
-                    <Top/>
-                    <Switch>
-                        <Route path="/" exact>
-                            <PokemonList
-                                checkCapturedPokemon={checkCapturedPokemon}
-                                setCapturePokemon={setCapturePokemon}/>
-                        </Route>
-                        <Route path="/pokemon/:name">
-                            <PokemonPage/>
-                        </Route>
-                        <Route path="/move/:name">
-                            <PokemonMovePage/>
-                        </Route>
-                        <Route component={Page404}/>
-                    </Switch>
-                </Router>
-            </MyGlobalContext.Provider>
-        </div>
+        <Layout className="App">
+            <Switch>
+                <Route path="/" exact>
+                    <PokemonList/>
+                </Route>
+                <Route path="/pokemon/:name">
+                    <PokemonPage/>
+                </Route>
+                <Route path="/move/:name">
+                    <PokemonMovePage/>
+                </Route>
+                <Route component={Page404}/>
+            </Switch>
+        </Layout>
     );
 }
 
