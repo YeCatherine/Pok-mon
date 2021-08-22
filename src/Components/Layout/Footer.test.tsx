@@ -1,17 +1,13 @@
 import React from 'react';
-import Header from "./Header";
+import Footer from "./Footer";
 import {getByText} from "@testing-library/react";
 import {render} from '@testing-library/react';
 import {BrowserRouter as Router} from "react-router-dom";
 
-test('testing the navbar Top', () => {
+test('testing the Footer', () => {
     const myName: string = 'foo';
     const {getByText} = render(
-        <div className="App">
-            <Router basename={'/pokedex'}>
-                <Header/>
-            </Router>
-        </div>
+        <Footer/>
     );
     expect(getByText(`Pokédex Mission`)).toBeTruthy();
 });

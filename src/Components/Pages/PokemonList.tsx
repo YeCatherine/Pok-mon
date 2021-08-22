@@ -3,8 +3,6 @@ import PokemonListService from "../../Services/PokemonListService";
 import IPokemonData from "../../Types/IPokemonData";
 import PokemonCard from "../UI/PokemonCard";
 import PokemonSearchBox from "../UI/PokemonSearchBox";
-import LazyList from 'react-list-lazy-load';
-import ReactList from 'react-list';
 import Spinner from "../UI/Spinner";
 import useLocalStorage from "../../Hooks/useLocalStorage";
 import {getIdFromURL} from "../../Services/Common";
