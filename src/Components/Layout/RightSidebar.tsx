@@ -6,6 +6,7 @@ const RightSidebar: React.FC = () => {
     return (
         <>
             <NotCapturedPokemon/>
+            <hr/>
             <CapturedPokemons/>
         </>
     )

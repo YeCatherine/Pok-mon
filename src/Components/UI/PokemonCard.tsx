@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import PokemonImage from "./PokemonImage";
 import CaptureButton from "./CaptureButton";
 import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
+import {Card} from "react-bootstrap";
+import Spinner from "./Spinner";
 
 /**
  * The pokemon card.
@@ -13,16 +15,24 @@ import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
  */
 const PokemonCard: React.FC<IPokemonSimpleComponent> = (props) => {
     const {pokemon} = props;
-    if (!pokemon) return null;
+    if (!pokemon) return <Spinner/>;
 
-    return (<div className="pokemon-card card text-dark text-center">
-        <Link className="card-header"
-              to={`/pokemon/${pokemon.name}`}>
-            {pokemon.id && <span className="pokemon-id">#{pokemon.id}</span>}
-            <PokemonImage pokemon={pokemon}/>
-            <h2 className="pokemon-name"><span>{pokemon.name}</span></h2>
-        </Link>
-        <CaptureButton pokemon={pokemon}/>
-    </div>)
+    return (
+        <Card style={{width: '18rem'}}
+              className="pokemon-card card text-dark text-center">
+            <Card.Body>
+                <Card.Title className="pokemon-name"><span>{pokemon.name}</span></Card.Title>
+                <Card.Text>
+                    <Link className=""
+                          to={`/pokemon/${pokemon.name}`}>
+                        {pokemon.id &&
+                        <span className="pokemon-id">#{pokemon.id}</span>}
+                        <PokemonImage pokemon={pokemon}/>
+                    </Link>
+                </Card.Text>
+                <CaptureButton pokemon={pokemon}/>
+            </Card.Body>
+        </Card>)
 }
+
 export default PokemonCard;

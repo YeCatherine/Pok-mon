@@ -5,7 +5,7 @@ import http from "../http-common";
  */
 const getAll = (): any => {
     //@todo change limit
-    return http.get("/pokemon?limit=1118");
+    return http.get("/pokemon-species?limit=1000");
 }
 
 /**

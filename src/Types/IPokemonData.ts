@@ -35,6 +35,7 @@ export default interface IPokemonData {
      * Pokemon name.
      */
     name: string,
+    names: Array<GenericPokemonAbility>
     /**
      * Url.
      */

@@ -3,6 +3,8 @@ import PokemonListService from "../../Services/PokemonListService";
 import usePokemonCapture from "../../Hooks/usePokemonCapture";
 import IPokemonData from "../../Types/IPokemonData";
 import PokemonCard from "./PokemonCard";
+import {Card, Button} from "react-bootstrap";
+import Spinner from "./Spinner";
 
 /**
  * Functional component for random notcaptured pokemon.
@@ -46,15 +48,16 @@ const NotCapturedPokemon: React.FC = (props) => {
         setRandomPokemon(freePokemons[Math.floor(Math.random() * freePokemons.length)]);
     }, [capturedPokemons, pokemons]);
 
-    if (!randomPokemon) return null;
+    if (!randomPokemon) return (<Spinner/>);
+
     return (
         <>
-            <h3>Random not Captured Pokemon</h3>
+            <h3>See also</h3>
             <div
                 className="list-group d-flex flex-wrap flex-row justify-content-center">
                 <PokemonCard pokemon={randomPokemon}/>
             </div>
         </>
     );
-}
+};
 export default NotCapturedPokemon;
