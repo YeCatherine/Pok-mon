@@ -1,6 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router} from 'react-router-dom'
-import Top from './Top';
+import React, {useState} from "react";
+import {BrowserRouter as Router} from 'react-router-dom'
+import {Container, Row, Col} from "react-bootstrap";
+import {MyGlobalContext} from '../../Services/Context'
+import Header from './Header';
+import RightSidebar from "./RightSidebar";
 import Footer from './Footer';
 
 /**
@@ -10,13 +13,31 @@ import Footer from './Footer';
  *
  * @constructor
  */
-const Layout:React.FC = ({ children }) => {
+const Layout: React.FC<{ className: string }> = ({className, children}) => {
+    const [language, setLanguage] = useState<string>('en');
+
     return (
-        <Router>
-            <Top />
-            <main>{children}</main>
-            <Footer />
-        </Router>
+        <Container className={className}>
+            <MyGlobalContext.Provider
+                value={{language, setLanguage}}>
+                <Router basename={'/pokedex'}>
+                    <Row>
+                        <Header/>
+                    </Row>
+                    <Row>
+                        <Col md={{span: 9, order: 0}} xs={{span: 12, order: 1}}>
+                            <main>{children}</main>
+                        </Col>
+                        <Col md={{span: 3, order: 1}} xs={{span: 12, order: 0}}>
+                            <RightSidebar/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Footer/>
+                    </Row>
+                </Router>
+            </MyGlobalContext.Provider>
+        </Container>
     )
 }
 
