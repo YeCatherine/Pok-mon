@@ -1,10 +1,4 @@
-/**
- * General Pokemon Ability object structure.
- */
-interface GenericPokemonAbility {
-    name: string
-    url: string
-}
+import IGeneralPokemonDataItem from "./iGeneralPokemonDataItem";
 
 /**
  * Sprites of the Pokemon: Front default as fallback and Official as main.
@@ -19,7 +13,7 @@ interface Sprites {
 }
 
 interface StatsList {
-    stat: GenericPokemonAbility;
+    stat: IGeneralPokemonDataItem;
     base_stat: string;
 }
 
@@ -35,7 +29,7 @@ export default interface IPokemonData {
      * Pokemon name.
      */
     name: string,
-    names: Array<GenericPokemonAbility>
+    names: Array<IGeneralPokemonDataItem>
     /**
      * Url.
      */
@@ -55,21 +49,21 @@ export default interface IPokemonData {
     /**
      * Pokemon types.
      */
-    types: Array<{ type: GenericPokemonAbility }>
+    types: Array<{ type: IGeneralPokemonDataItem }>
 
     /**
      * Abilities.
      */
-    abilities: Array<{ ability: GenericPokemonAbility }>
+    abilities: Array<{ ability: IGeneralPokemonDataItem }>
     /**
      * Moves interface.
      */
-    moves: Array<{ move: GenericPokemonAbility }>
+    moves: Array<{ move: IGeneralPokemonDataItem }>
     /**
      * Evolution chain
      */
     published?: boolean,
     sprites: Sprites
     stats: Array<StatsList>
-    evolution_chain?: GenericPokemonAbility
+    evolution_chain?: IGeneralPokemonDataItem
 }
