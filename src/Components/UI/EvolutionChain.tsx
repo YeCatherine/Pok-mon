@@ -4,7 +4,6 @@ import {ListGroup} from "react-bootstrap";
 import {getIdFromURL} from "../../Services/Common";
 import PokemonListService from "../../Services/PokemonListService";
 import PokemonCard from "./PokemonCard";
-import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
 
 /**
  * Item of chain evolution sequence.
@@ -14,68 +13,72 @@ interface IEvolutionChainItem {
     evolves_to: Array<IEvolutionChainItem>;
 }
 
+interface IEvolutionResponse {
+
+    chain: IEvolutionChainItem
+}
+
+interface IEvolutionComponent {
+    pokemon: IPokemonData
+    pokemonSpecies: IPokemonData
+}
+
 /**
  * Retrieves evolution chain.
  * @param props The pokemon.
  * @constructor The functional component of EvolutionChain.
  */
-const EvolutionChain: React.FC<IPokemonSimpleComponent> = (props) => {
-    const {pokemon} = props
-    const [evolutionId, setEvolutionId] = useState<number>();
-    const [evolutionChain, setEvolutionChain] = useState<IEvolutionChainItem>();
+const EvolutionChain: React.FC<IEvolutionComponent> = (props) => {
+    const {pokemon, pokemonSpecies} = props;
     const [evolution, setEvolution] = useState<Array<IPokemonData>>([]);
 
     useEffect(() => {
-        PokemonListService.getSpecies(pokemon.name).then((response: any) => {
-            setEvolutionId(getIdFromURL(response.data.evolution_chain.url));
-        });
-    }, [pokemon]);
+        // Get evolution id.
+        if (pokemonSpecies.evolution_chain?.url) {
+            const evolutionId = getIdFromURL(pokemonSpecies.evolution_chain?.url);
+            if (typeof evolutionId === 'undefined') return undefined;
 
-    useEffect(() => {
-        if (typeof evolutionId === 'undefined') return;
-        PokemonListService.getEvolutionChain(evolutionId)
-            .then((response: any) => {
-                if (typeof response.data.chain !== "undefined") {
-                    setEvolutionChain(response.data.chain);
-                }
-            })
-            .catch((e: any) => {
-                console.log(e);
-            });
-    }, [evolutionId]);
+            PokemonListService.getEvolutionChain(evolutionId)
+                .then((response: any) => {
+                    // Restructure chain.
+                    if (typeof response.data.chain === "undefined") return;
 
-    useEffect(() => {
-        const evolutionList: Array<IPokemonData> = [];
-        if (typeof evolutionChain === "undefined") return;
-        (function getItem(chainItem: IEvolutionChainItem): any {
-                if (chainItem.species) {
-                    evolutionList.push(chainItem.species)
-                    if (chainItem.evolves_to.length) {
-                        getItem(chainItem.evolves_to[0]);
-                    }
-                }
-            }
-        )(evolutionChain);
-        setEvolution(evolutionList);
+                    const evolutionChain = response.data.chain;
+                    const evolutionList: Array<IPokemonData> = [];
+                    if (typeof evolutionChain === "undefined") return;
 
-    }, [evolutionChain]);
+                    (function getItem(chainItem: IEvolutionChainItem): any {
+                            if (chainItem.species) {
+                                evolutionList.push(chainItem.species)
+                                if (chainItem.evolves_to.length) {
+                                    getItem(chainItem.evolves_to[0]);
+                                }
+                            }
+                        }
+                    )(evolutionChain);
+                    setEvolution(evolutionList);
+
+                })
+                .catch((e: any) => {
+                    console.log(e);
+                });
+        }
+    }, []);
 
     /**
      * Get Evolution sequense.
      *
      * @param {Array} evolution - List of related pokemons evolution.
      */
-    const evolutionList = (evolution: Array<IPokemonData>) => {
-        return evolution.map((pokemon, index) => <PokemonCard
-            key={index}
-            pokemon={pokemon}/>)
-    }
-    if (!pokemon || !evolution || evolution.length <= 1) return null;
-
+    if (evolution.length <= 1) return null;
     return (
         <ul className="card text-dark text-center">
             <ListGroup>Evolution Chain</ListGroup>
-            {evolutionList}
+            {evolution.map((currentPokemon, index) => {
+                return (<PokemonCard
+                    key={index}
+                    pokemon={currentPokemon}/>);
+            })}
         </ul>
     )
 }
