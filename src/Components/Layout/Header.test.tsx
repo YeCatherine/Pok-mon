@@ -1,5 +1,5 @@
 import React from 'react';
-import Top from "./Top";
+import Header from "./Header";
 import {getByText} from "@testing-library/react";
 import {render} from '@testing-library/react';
 import {BrowserRouter as Router} from "react-router-dom";
@@ -9,7 +9,7 @@ test('testing the navbar Top', () => {
     const {getByText} = render(
         <div className="App">
             <Router basename={'/pokedex'}>
-                <Top/>
+                <Header/>
             </Router>
         </div>
     );
