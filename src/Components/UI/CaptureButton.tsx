@@ -1,16 +1,19 @@
 import React from "react";
-import ICaptureButton from "../../Types/ICaptureButton";
+import usePokemonCapture from "../../Hooks/usePokemonCapture";
+import IPokemonSimpleComponent from "../../Types/IPokemonSimpleComponent";
 
 /**
  * The capture button functional component.
  * @param props The button status.
  * @constructor of CaptureButton.
  */
-const CaptureButton: React.FC<ICaptureButton> = (props) => {
-    const {pokemon, checkCapturedPokemon, setCapturePokemon} = props;
+const CaptureButton: React.FC<IPokemonSimpleComponent> = (props) => {
+    const {setCapturedPokemons, checkCapturedPokemon} = usePokemonCapture();
+    const {pokemon} = props;
+
     return (
         <button className="btn btn-outline-secondary"
-                onClick={() => setCapturePokemon(pokemon)}>
+                onClick={() => setCapturedPokemons(pokemon)}>
             {checkCapturedPokemon(pokemon) ? "Escape" : "Capture"}
         </button>);
 }

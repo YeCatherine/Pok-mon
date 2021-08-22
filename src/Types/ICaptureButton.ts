@@ -5,6 +5,4 @@ import IPokemonData from "./Pokemon";
  */
 export default interface ICaptureButton {
     pokemon: IPokemonData;
-    checkCapturedPokemon: (pokemon: IPokemonData) => boolean;
-    setCapturePokemon: (pokemon: IPokemonData) => void;
 }

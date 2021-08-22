@@ -115,7 +115,7 @@ const PokemonPage: React.FC = (props) => {
         <>
             {pokemon && <Pokemon key={pokemon?.name} pokemon={pokemon}/>}
         </>);
-}
+};
 
 
 export default PokemonPage;

@@ -23,7 +23,7 @@ const PokemonMovePage: React.FC = (props) => {
                 setMove(response.data);
             })
             .catch((e: any) => {
-                console.log(e);
+                console.warn(e);
             });
     }, [params.name]);
 
