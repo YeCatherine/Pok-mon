@@ -1,7 +1,7 @@
 import React from "react";
 import {Image} from "react-bootstrap";
-import IPokemonImage from "../Types/IPokemonImage";
-import {getIdFromURL} from "../Services/Common";
+import IPokemonImage from "../../Types/IPokemonImage";
+import {getIdFromURL} from "../../Services/Common";
 
 /**
  * Gets the image of the pokemon.

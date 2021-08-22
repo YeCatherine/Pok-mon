@@ -2,7 +2,7 @@ import React from "react";
 import PokemonImage from "./PokemonImage";
 import {Link} from "react-router-dom";
 import CaptureButton from "./CaptureButton";
-import PokeComponentType from "../Types/PokeComponentType";
+import PokeComponentType from "../../Types/PokeComponentType";
 
 /**
  * The pokemon card.

@@ -3,13 +3,13 @@ import './App.css';
 import useLocalStorage from "./Hooks/useLocalStorage";
 import IPokemonData from "./Types/Pokemon";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import PokemonList from "./Components/PokemonList";
-import PokemonPage from "./Components/PokemonPage";
-import PokemonMovePage from "./Components/PokemonMovePage";
+import PokemonList from "./Components/Pages/PokemonList";
+import PokemonPage from "./Components/Pages/PokemonPage";
+import PokemonMovePage from "./Components/Pages/PokemonMovePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Top from "./Components/Layout/Top";
 import {MyGlobalContext} from './Services/Context'
-
+import Page404 from "./Components/Pages/Page404";
 /**
  * The App functional component.
  * @constructor
@@ -58,6 +58,7 @@ function App() {
                         <Route path="/move/:name">
                             <PokemonMovePage/>
                         </Route>
+                        <Route component={Page404}/>
                     </Switch>
                 </Router>
             </MyGlobalContext.Provider>

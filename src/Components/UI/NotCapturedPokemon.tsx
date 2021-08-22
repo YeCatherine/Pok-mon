@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import PokemonListService from "../Services/PokemonListService";
-import IPokemonData from "../Types/Pokemon";
-import PokeComponentType from "../Types/PokeComponentType";
-import useLocalStorage from "../Hooks/useLocalStorage";
+import PokemonListService from "../../Services/PokemonListService";
+import IPokemonData from "../../Types/Pokemon";
+import PokeComponentType from "../../Types/PokeComponentType";
+import useLocalStorage from "../../Hooks/useLocalStorage";
 import PokemonCard from "./PokemonCard";
 
 /**

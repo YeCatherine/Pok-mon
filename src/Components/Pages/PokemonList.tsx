@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import PokemonListService from "../Services/PokemonListService";
-import IPokemonData from "../Types/Pokemon";
-import CapturedPokemons from "./CapturedPokemons";
-import PokeComponentType from "../Types/PokeComponentType";
-import NotCapturedPokemon from "./NotCapturedPokemon";
+import PokemonListService from "../../Services/PokemonListService";
+import IPokemonData from "../../Types/Pokemon";
+import CapturedPokemons from "../UI/CapturedPokemons";
+import PokeComponentType from "../../Types/PokeComponentType";
+import NotCapturedPokemon from "../UI/NotCapturedPokemon";
 import {Container, Col, Row} from "react-bootstrap";
-import IPokemonSearchBox from "../Types/IPokemonSearchBox";
-import PokemonCard from "./PokemonCard";
+import IPokemonSearchBox from "../../Types/IPokemonSearchBox";
+import PokemonCard from "../UI/PokemonCard";
 
 /**
  * Searches pokemon.

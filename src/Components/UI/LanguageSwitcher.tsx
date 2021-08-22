@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import PokemonListService from "../Services/PokemonListService";
-import {useGlobalContext} from '../Services/Context'
+import PokemonListService from "../../Services/PokemonListService";
+import {useGlobalContext} from '../../Services/Context'
 
 /**
  * The language switcher.

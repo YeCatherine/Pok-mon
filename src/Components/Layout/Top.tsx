@@ -1,5 +1,5 @@
 import React from "react";
-import LanguageSwitcher from "../LanguageSwitcher";
+import LanguageSwitcher from "../UI/LanguageSwitcher";
 import {Link} from "react-router-dom";
 
 const Top:React.FC = () => {

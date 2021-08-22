@@ -1,5 +1,5 @@
 import React from "react";
-import ICaptureButton from "../Types/ICaptureButton";
+import ICaptureButton from "../../Types/ICaptureButton";
 
 /**
  * The capture button functional component.

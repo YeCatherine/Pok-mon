@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import IPokemonData from "../Types/Pokemon";
-import PokemonListService from "../Services/PokemonListService";
+import IPokemonData from "../../Types/Pokemon";
+import PokemonListService from "../../Services/PokemonListService";
 import {Container, ListGroup as Ul, ListGroupItem as Li} from "react-bootstrap";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "../UI/PokemonCard";
 
 /**
  * Functional component for pokemon move page.

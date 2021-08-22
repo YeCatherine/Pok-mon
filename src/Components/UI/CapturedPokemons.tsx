@@ -1,7 +1,7 @@
 import React from "react";
-import PokeComponentType from "../Types/PokeComponentType";
-import useLocalStorage from "../Hooks/useLocalStorage";
-import IPokemonData from "../Types/Pokemon";
+import PokeComponentType from "../../Types/PokeComponentType";
+import useLocalStorage from "../../Hooks/useLocalStorage";
+import IPokemonData from "../../Types/Pokemon";
 import PokemonCard from "./PokemonCard";
 
 /**

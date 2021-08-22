@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import IPokemonData from "../Types/Pokemon";
-import PokemonListService from "../Services/PokemonListService";
+import IPokemonData from "../../Types/Pokemon";
+import PokemonListService from "../../Services/PokemonListService";
 import {
     Container,
     Image,
     ListGroup as Ul,
     ListGroupItem as Li
 } from "react-bootstrap";
-import EvolutionChain from "./EvolutionChain";
-import {useGlobalContext} from '../Services/Context'
+import EvolutionChain from "../UI/EvolutionChain";
+import {useGlobalContext} from '../../Services/Context'
 
 /**
  * Outputs the list of pokemon weight, height, order, type name, abilities, moves.
