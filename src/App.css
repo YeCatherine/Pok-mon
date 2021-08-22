@@ -25,3 +25,12 @@ input.p-2.flex-grow-1 {
     height: auto;
     box-shadow: 0 0 10px 10px gainsboro !important;
 }
+
+.pokemon-main-image {
+    width: 100px;
+    height: auto;
+}
+
+.card img.rounded-circle {
+    width: 130px;
+}
