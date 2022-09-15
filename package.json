@@ -48,6 +48,7 @@
     "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --coverage",
+    "test:cy": "cypress open",
     "eject": "react-scripts eject",
     "docs": "typedoc"
   },
@@ -70,6 +71,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^10.8.0",
     "gh-pages": "^4.0.0"
   }
 }

@@ -118,6 +118,7 @@ const PokemonList: React.FC = (props) => {
 
     return (
         <>
+            <>
             <PokemonSearchBox placeholder="Pokemon name"
                               handleSearch={handleSearch}/>
             <select onChange={handleSortChange}>
@@ -141,8 +142,9 @@ const PokemonList: React.FC = (props) => {
                     by Name: Z-A
                 </option>
             </select>
+            </>
             <div
-                className="list-group d-flex flex-wrap flex-row  align-content-between lazy-test">
+                className="list-group d-flex flex-wrap flex-row align-content-between lazy-test pokemon-card-list">
                 {pokemons.filter(filterPokemon).sort(sortingLogic).map((pokemon, index) =>
                     <PokemonCard key={index} pokemon={pokemon}/>
                 )}
