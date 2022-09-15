@@ -5,7 +5,10 @@ import {MyGlobalContext} from '../../Services/Context'
 import Header from './Header';
 import RightSidebar from "./RightSidebar";
 import Footer from "./Footer";
-
+type Props = {
+    className: string,
+    children: JSX.Element,
+};
 /**
  * Main Layout component.
  *
@@ -13,7 +16,8 @@ import Footer from "./Footer";
  *
  * @constructor
  */
-const Layout: React.FC<{ className: string }> = ({className, children}) => {
+// @ts-ignore
+const Layout: React.FC<Props> = ({className, children}) => {
     const [language, setLanguage] = useState<string>("en");
 
     return (
